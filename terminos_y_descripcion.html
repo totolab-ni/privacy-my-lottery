@@ -1,58 +1,302 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Términos y Condiciones - TotoLab</title>
+    <title>Términos y Condiciones - AdminPlus</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            padding: 40px;
-            background-color: #f9f9f9;
-            color: #333;
-            max-width: 800px;
-            margin: auto;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        h1, h2 {
-            color: #c62828;
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .section {
+            background: #f8faff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #4facfe;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2::before {
+            content: "✦";
+            color: #4facfe;
+            font-size: 1.2rem;
+        }
+
+        .section p {
+            color: #555;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section li {
+            background: white;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #4facfe;
+            position: relative;
+        }
+
+        .section li::before {
+            content: "●";
+            color: #4facfe;
+            position: absolute;
+            left: -10px;
+            top: 20px;
+            background: white;
+            padding: 0 5px;
+        }
+
+        .section strong {
+            color: #2c3e50;
+        }
+
+        .terms-section {
+            background: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px 0;
+            border: 2px solid #e8f4fd;
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e8f4fd;
+        }
+
+        .terms-header h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .terms-header .update-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .terms-header .welcome {
+            color: #555;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+
+        .term-item {
+            background: #f8faff;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 4px solid #e74c3c;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .term-item h2 {
+            color: #e74c3c;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .term-item h2::before {
+            content: attr(data-number);
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .important-note {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(255, 154, 158, 0.3);
+        }
+
+        .important-note h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            border: none;
+            margin: 50px 0;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .section, .terms-section, .term-item {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>TotoLab Sorteos - Gestión de rifas escolares y comunitarias</h1>
-    <p>TotoLab Sorteos es una aplicación diseñada para facilitar la venta y administración de tickets de rifas organizadas por <strong>colegios, comunidades y eventos locales</strong>.</p>
+    <div class="container">
+        <div class="header">
+            <h1>📊 AdminPlus – Gestión integral de rifas, ventas e inventarios</h1>
+            <div class="subtitle">Solución completa para comunidades, escuelas e instituciones locales</div>
+        </div>
 
-    <h2>🧩 Funciones principales:</h2>
-    <ul>
-        <li>Registro rápido de compradores y tickets vendidos.</li>
-        <li>Consulta de historial de rifas.</li>
-        <li>Control de licencias para uso autorizado.</li>
-        <li>Visualización del número ganador (definido por los organizadores).</li>
-    </ul>
+        <div class="content">
+            <div class="section">
+                <p>AdminPlus es una aplicación diseñada para simplificar la organización de rifas, la administración de ventas y la gestión de recursos en <strong>comunidades, escuelas e instituciones locales</strong>.</p>
+                <p>Con esta herramienta podés llevar el control de rifas, facturación, inventarios y préstamos en un solo lugar, de manera rápida y ordenada.</p>
+                <p>Ideal para <strong>comités escolares, iglesias, organizaciones benéficas o negocios locales</strong> que buscan una solución práctica y confiable.</p>
+            </div>
 
-    <h2>🔐 Importante:</h2>
-    <p>Esta app <strong>no realiza sorteos</strong>, <strong>no ejecuta pagos</strong>, ni ofrece premios con valor monetario. Su función es exclusivamente de <strong>apoyo administrativo</strong> a rifas gestionadas por terceros.</p>
+            <div class="section">
+                <h2>🧩 Funciones principales</h2>
+                <ul>
+                    <li><strong>Rifas y sorteos:</strong> Registro de compradores, control de tickets vendidos y consulta de historial.</li>
+                    <li><strong>Facturación:</strong> Generación y control de facturas para ventas y actividades.</li>
+                    <li><strong>Inventarios:</strong> Administración de productos, entradas y materiales de eventos.</li>
+                    <li><strong>Préstamos:</strong> Registro y seguimiento de préstamos internos o comunitarios.</li>
+                    <li><strong>Licencias:</strong> Control de acceso y uso autorizado.</li>
+                    <li><strong>Ganadores:</strong> Visualización del número ganador (definido por los organizadores).</li>
+                </ul>
+            </div>
 
-    <hr>
+            <div class="important-note">
+                <h2>🔐 Importante</h2>
+                <p>AdminPlus es una herramienta de <strong>gestión administrativa</strong> que funciona completamente <strong>offline</strong>. No realiza sorteos automáticos, no procesa pagos en línea, ni ofrece premios con valor monetario. Su función es exclusivamente de <strong>apoyo organizacional</strong> para la administración integral de actividades gestionadas por las instituciones usuarias.</p>
+            </div>
 
-    <h1>📄 Términos y Condiciones</h1>
-    <p><strong>Última actualización:</strong> 2025-05-02</p>
+            <hr class="divider">
 
-    <h2>1. Uso de la aplicación</h2>
-    <p>TotoLab Sorteos es una herramienta de <strong>gestión y organización de rifas locales</strong>, destinada a administradores autorizados. No está destinada al público general como plataforma de juego o azar.</p>
+            <div class="terms-section">
+                <div class="terms-header">
+                    <h1>📄 Términos y Condiciones</h1>
+                    <div class="update-date"><strong>Última actualización:</strong> 2025-08-29</div>
+                    <div class="welcome">Bienvenido a AdminPlus. Al usar esta aplicación, aceptás los siguientes términos:</div>
+                </div>
 
-    <h2>2. Sin transacciones ni premios</h2>
-    <p>Esta aplicación <strong>no gestiona pagos</strong>, ni entrega premios o beneficios. Los sorteos que aparecen en la app son organizados por <strong>entidades externas</strong>, como colegios o comunidades, fuera del control de esta aplicación.</p>
+                <div class="term-item">
+                    <h2 data-number="1">Uso de la aplicación</h2>
+                    <p>AdminPlus es una herramienta de <strong>gestión integral</strong> que incluye administración de rifas, facturación, inventarios y préstamos, destinada a administradores autorizados de comunidades, escuelas e instituciones locales. No está destinada al público general como plataforma de juego o azar.</p>
+                </div>
 
-    <h2>3. Validación de licencia</h2>
-    <p>El acceso a la app puede estar sujeto a verificación mediante una clave o licencia proporcionada por TotoLab para uso autorizado.</p>
+                <div class="term-item">
+                    <h2 data-number="2">Funciones administrativas únicamente</h2>
+                    <p>Esta aplicación <strong>no procesa pagos en línea</strong>, ni entrega premios o beneficios monetarios. Las funciones de facturación son para registro administrativo local. Los sorteos, ventas y préstamos registrados en la app son organizados y gestionados por <strong>entidades externas</strong> (colegios, comunidades, organizaciones), fuera del control directo de esta aplicación.</p>
+                </div>
 
-    <h2>4. Protección de datos</h2>
-    <p>No se recopilan datos personales sensibles. Toda la información registrada se almacena localmente o en servidores gestionados por el usuario administrador.</p>
+                <div class="term-item">
+                    <h2 data-number="3">Validación de licencia</h2>
+                    <p>El acceso a la app puede estar sujeto a verificación mediante una clave o licencia proporcionada por TotoLab para uso autorizado.</p>
+                </div>
 
-    <h2>5. Limitación de responsabilidad</h2>
-    <p>TotoLab no se responsabiliza por sorteos, premios, resultados, o decisiones tomadas fuera de la app por terceros organizadores.</p>
+                <div class="term-item">
+                    <h2 data-number="4">Protección de datos</h2>
+                    <p>AdminPlus prioriza la <strong>privacidad y seguridad</strong> de la información:</p>
+                    <ul>
+                        <li><strong>Funcionamiento offline:</strong> La aplicación opera completamente offline con almacenamiento local SQLite, sin requerir conexión a internet para su funcionamiento básico.</li>
+                        <li><strong>Almacenamiento local:</strong> Toda la información registrada (clientes, inventarios, facturas, préstamos) se almacena únicamente en el dispositivo del usuario administrador.</li>
+                        <li><strong>No recopilación de datos sensibles:</strong> No se recopilan ni transmiten datos personales sensibles a servidores externos durante el uso normal de la aplicación.</li>
+                        <li><strong>Respaldo opcional en la nube:</strong> En futuras versiones, se implementará un sistema opcional de respaldo seguro en la nube, donde los datos serán <strong>encriptados</strong> y asociados únicamente a la cuenta de correo del usuario como identificador. Este respaldo será exclusivamente para <strong>fines de backup</strong> y recuperación de datos, manteniendo la privacidad total del contenido.</li>
+                        <li><strong>Control del usuario:</strong> El usuario tendrá control total sobre cuándo activar o desactivar el respaldo en la nube, y podrá eliminar sus datos del respaldo en cualquier momento.</li>
+                    </ul>
+                </div>
+
+                <div class="term-item">
+                    <h2 data-number="5">Limitación de responsabilidad</h2>
+                    <p>TotoLab no se responsabiliza por sorteos, premios, resultados, transacciones comerciales, préstamos, inventarios, o decisiones administrativas tomadas por las instituciones usuarias. AdminPlus es únicamente una herramienta de apoyo organizacional y los usuarios son responsables del uso adecuado y legal de la información registrada.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
