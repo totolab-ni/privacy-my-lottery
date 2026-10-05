@@ -114,8 +114,7 @@ BASE_CSS = """
       min-height: 44px;
     }
     .brand-mark {
-      display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px;
-      background: var(--primary); color: var(--on-primary);
+      display: block; width: 32px; height: 32px; border-radius: 8px;
     }
     .brand small { font-weight: 500; font-size: 0.8125rem; color: var(--muted-fg); }
     .site-nav { margin-left: -7px; }
@@ -254,7 +253,7 @@ def header(active):
   <header class="site-header">
     <div class="wrap">
       <a class="brand" href="index.html" aria-label="AdminPlus, inicio">
-        <span class="brand-mark" aria-hidden="true">{icon("store", 18)}</span>
+        <img class="brand-mark" src="favicon.png" width="32" height="32" alt="">
         <span>AdminPlus <small>por TotoLab</small></span>
       </a>
       <nav class="site-nav" aria-label="Principal">
@@ -295,6 +294,9 @@ def page(filename, title, description, og_title, body, extra_css=""):
   <meta property="og:site_name" content="AdminPlus">
   <meta property="og:title" content="{og_title}">
   <meta property="og:description" content="{description}">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="icon-512.png">
+  <meta property="og:image" content="icon-512.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
