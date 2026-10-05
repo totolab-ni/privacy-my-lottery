@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminPlus – Gestión para pequeños negocios</title>
+  <meta name="description" content="AdminPlus organiza clientes, inventario, facturación, cobros y finanzas de pequeños negocios en Android. Funciona sin internet y guarda los datos solo en el teléfono.">
+  <meta name="theme-color" content="#1E3A8A" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_NI">
+  <meta property="og:site_name" content="AdminPlus">
+  <meta property="og:title" content="AdminPlus – Gestión para pequeños negocios">
+  <meta property="og:description" content="AdminPlus organiza clientes, inventario, facturación, cobros y finanzas de pequeños negocios en Android. Funciona sin internet y guarda los datos solo en el teléfono.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --primary: #1E3A8A;
+      --on-primary: #FFFFFF;
+      --fg: #0F172A;
+      --accent: #A16207;
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --muted: #E8ECF1;
+      --muted-fg: #475569;
+      --border: #E2E8F0;
+      --success: #15803D;
+      --destructive: #DC2626;
+      --primary-soft: #EEF2FB;
+      --accent-soft: #FBF6EA;
+      --radius: 12px;
+      --measure: 72ch;
+      --font: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #93B4FF;
+        --on-primary: #0B1220;
+        --fg: #E6ECF5;
+        --accent: #E3B341;
+        --bg: #0B1220;
+        --card: #111A2E;
+        --muted: #18233A;
+        --muted-fg: #A3B1C6;
+        --border: #22304A;
+        --success: #4ADE80;
+        --destructive: #F87171;
+        --primary-soft: #142140;
+        --accent-soft: #261F10;
+      }
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font);
+      font-size: 1rem;
+      line-height: 1.65;
+      overflow-wrap: break-word;
+    }
+    img, svg { display: block; max-width: 100%; }
+    .ico { flex: none; }
+    a { color: var(--primary); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+    .skip {
+      position: absolute; left: 16px; top: -48px; z-index: 10;
+      background: var(--primary); color: var(--on-primary);
+      padding: 8px 14px; border-radius: 8px; font-weight: 600; text-decoration: none;
+    }
+    .skip:focus { top: 12px; }
+    .wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 768px) { .wrap { padding: 0 24px; } }
+
+    /* Header */
+    .site-header { background: var(--card); border-bottom: 1px solid var(--border); }
+    .site-header .wrap {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 8px 24px; padding-top: 12px; padding-bottom: 12px;
+    }
+    .brand {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--fg); text-decoration: none; font-weight: 700; font-size: 1.125rem; letter-spacing: -0.01em;
+      min-height: 44px;
+    }
+    .brand-mark {
+      display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px;
+      background: var(--primary); color: var(--on-primary);
+    }
+    .brand small { font-weight: 500; font-size: 0.8125rem; color: var(--muted-fg); }
+    .site-nav { margin-left: -7px; }
+    .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 2px; }
+    @media (min-width: 720px) { .site-nav { margin-left: 0; } }
+    .site-nav a {
+      display: inline-flex; align-items: center; min-height: 44px; padding: 0 7px;
+      color: var(--muted-fg); text-decoration: none; font-weight: 500; font-size: 0.875rem;
+      border-radius: 8px; transition: color .15s ease, background-color .15s ease;
+    }
+    .site-nav a:hover { color: var(--fg); background: var(--muted); }
+    @media (min-width: 480px) { .site-nav a { padding: 0 10px; font-size: 0.9375rem; } }
+    .site-nav a[aria-current="page"] { color: var(--primary); box-shadow: inset 0 -2px 0 var(--primary); border-radius: 0; }
+
+    /* Typography */
+    h1, h2, h3 { line-height: 1.25; letter-spacing: -0.015em; margin: 0; }
+    h1 { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem); font-weight: 600; }
+    h3 { font-size: 1.0625rem; font-weight: 600; }
+    p { margin: 0 0 14px; }
+    ul, ol { margin: 0 0 14px; padding-left: 22px; }
+    li { margin: 0 0 6px; }
+    strong { font-weight: 600; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; margin: 0 0 12px;
+      font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-fg);
+    }
+    .eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--accent); }
+    .lead { font-size: 1.125rem; color: var(--muted-fg); max-width: 60ch; }
+    .tnum { font-variant-numeric: tabular-nums; }
+
+    /* Legal document layout */
+    .doc-head { padding: 40px 0 28px; border-bottom: 1px solid var(--border); background: var(--card); }
+    .doc-head h1 { max-width: 24ch; margin-bottom: 12px; }
+    .meta { display: grid; gap: 4px 24px; margin: 16px 0 0; padding: 0; font-size: 0.9375rem; color: var(--muted-fg); font-variant-numeric: tabular-nums; }
+    .meta div { display: flex; flex-wrap: wrap; gap: 0 6px; }
+    .meta dt { font-weight: 600; color: var(--fg); }
+    .meta dd { margin: 0; }
+    @media (min-width: 640px) { .meta { grid-template-columns: repeat(2, minmax(0, max-content)); } }
+    .doc { padding-top: 32px; padding-bottom: 56px; }
+    .prose { max-width: var(--measure); }
+    .prose > section { padding-top: 32px; margin-top: 32px; border-top: 1px solid var(--border); scroll-margin-top: 16px; }
+    .prose > section:first-of-type { border-top: 0; margin-top: 0; }
+    .prose h2 { margin-bottom: 14px; display: flex; gap: 12px; align-items: baseline; }
+    .prose h2 .num { color: var(--accent); font-variant-numeric: tabular-nums; font-weight: 600; min-width: 1.5em; }
+    .prose h3 { margin: 22px 0 8px; }
+
+    .callout {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: var(--primary-soft); border: 1px solid var(--border); border-left: 3px solid var(--primary);
+      border-radius: var(--radius); padding: 18px 18px; margin: 0 0 24px;
+    }
+    .callout .ico { color: var(--primary); margin-top: 3px; }
+    .callout.warn { background: var(--accent-soft); border-left-color: var(--accent); }
+    .callout.warn .ico { color: var(--accent); }
+    .callout > div > :last-child { margin-bottom: 0; }
+    .callout ul { margin-bottom: 0; }
+
+    .toc { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin: 0 0 8px; }
+    .toc h2 { font-size: 1rem; margin: 0 0 10px; }
+    .toc ol { margin: 0; padding-left: 0; list-style: none; columns: 1; column-gap: 24px; counter-reset: toc; }
+    @media (min-width: 640px) { .toc ol { columns: 2; } }
+    .toc li { break-inside: avoid; margin: 0; counter-increment: toc; }
+    .toc a { display: flex; gap: 8px; padding: 6px 0; text-decoration: none; color: var(--fg); min-height: 36px; align-items: center; }
+    .toc a::before { content: counter(toc) "."; color: var(--muted-fg); font-variant-numeric: tabular-nums; min-width: 1.75em; }
+    .toc a:hover { color: var(--primary); text-decoration: underline; }
+
+    .table-wrap { overflow-x: auto; margin: 0 0 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); -webkit-overflow-scrolling: touch; }
+    table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.9375rem; }
+    caption { text-align: left; padding: 12px 14px 0; color: var(--muted-fg); font-size: 0.875rem; }
+    th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+    tbody tr:last-child td { border-bottom: 0; }
+    th { font-weight: 600; color: var(--muted-fg); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.04em; background: var(--muted); }
+    td:first-child { font-weight: 600; }
+
+    .steps { list-style: none; padding: 0; counter-reset: step; }
+    .steps > li { position: relative; padding: 0 0 18px 48px; counter-increment: step; margin: 0; }
+    .steps > li::before {
+      content: counter(step); position: absolute; left: 0; top: 0;
+      width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+      border: 1.5px solid var(--primary); color: var(--primary); font-weight: 600; font-variant-numeric: tabular-nums; font-size: 0.9375rem;
+    }
+    .steps > li > strong:first-child { display: block; }
+
+    .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .contact-card p { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; }
+    .contact-card p:last-child { margin-bottom: 0; }
+    .contact-card .ico { color: var(--muted-fg); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 48px; padding: 0 20px; border-radius: 10px; font-weight: 600; font-size: 1rem;
+      text-decoration: none; border: 1px solid transparent; transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
+    }
+    .btn-primary { background: var(--primary); color: var(--on-primary); }
+    .btn-primary:hover { filter: brightness(1.08); }
+    .btn-secondary { background: var(--card); color: var(--fg); border-color: var(--border); }
+    .btn-secondary:hover { background: var(--muted); }
+    .btn:active { transform: scale(0.98); }
+
+    /* Footer */
+    .site-footer { border-top: 1px solid var(--border); background: var(--card); color: var(--muted-fg); font-size: 0.9375rem; }
+    .site-footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center; padding-top: 24px; padding-bottom: 24px; }
+    .site-footer p { margin: 0; }
+    .site-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 16px; }
+    .site-footer li { margin: 0; }
+    .site-footer a { color: var(--muted-fg); display: inline-flex; min-height: 44px; align-items: center; }
+    .site-footer a:hover { color: var(--fg); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+    @media print {
+      .site-header, .site-footer, .skip, .toc { display: none; }
+      body { background: #fff; color: #000; }
+    }
+
+    .btn-lg { min-height: 56px; padding: 0 22px; }
+    .btn-lg span { display: flex; flex-direction: column; line-height: 1.15; text-align: left; }
+    .btn-lg small { font-size: 0.75rem; font-weight: 500; opacity: .85; }
+
+    .hero { background: var(--card); border-bottom: 1px solid var(--border); padding: 40px 0 48px; }
+    .hero .wrap { display: grid; gap: 40px; align-items: center; }
+    @media (min-width: 900px) { .hero .wrap { grid-template-columns: 1.15fr 0.85fr; } .hero { padding: 72px 0; } }
+    .hero h1 { max-width: 18ch; margin-bottom: 16px; }
+    .hero h1 em { font-style: normal; color: var(--primary); }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; margin-bottom: 18px;
+      border: 1px solid var(--border); border-radius: 999px; font-size: 0.8125rem; font-weight: 600; color: var(--muted-fg); background: var(--bg);
+    }
+    .badge b { color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; align-items: center; }
+    .facts { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 10px 20px; color: var(--muted-fg); font-size: 0.9375rem; }
+    .facts li { display: inline-flex; align-items: center; gap: 8px; margin: 0; }
+    .facts .ico { color: var(--success); }
+
+    /* Mockups de teléfono en CSS */
+    .phone {
+      width: min(260px, 72vw); aspect-ratio: 9 / 18.5; margin: 0 auto; border-radius: 32px; padding: 10px;
+      background: var(--fg); box-shadow: 0 24px 48px -24px rgba(15, 23, 42, 0.45); position: relative;
+    }
+    .phone::before { content: ""; position: absolute; top: 16px; left: 50%; width: 52px; height: 6px; margin-left: -26px; border-radius: 3px; background: var(--card); opacity: .35; z-index: 1; }
+    .phone-screen {
+      height: 100%; border-radius: 24px; background: var(--bg); overflow: hidden;
+      display: flex; flex-direction: column; gap: 10px; padding: 30px 14px 16px;
+    }
+    .ph-bar { height: 10px; border-radius: 5px; background: var(--muted); }
+    .ph-title { width: 55%; height: 14px; border-radius: 6px; background: var(--primary); opacity: .9; }
+    .ph-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .ph-kpi { border: 1px solid var(--border); background: var(--card); border-radius: 10px; padding: 10px; display: grid; gap: 6px; }
+    .ph-kpi i { display: block; height: 8px; border-radius: 4px; background: var(--muted); width: 60%; }
+    .ph-kpi b { display: block; height: 14px; border-radius: 4px; background: var(--fg); opacity: .8; width: 80%; }
+    .ph-kpi.acc b { background: var(--accent); opacity: 1; }
+    .ph-row { display: flex; align-items: center; gap: 10px; border: 1px solid var(--border); background: var(--card); border-radius: 10px; padding: 10px; }
+    .ph-row span { width: 26px; height: 26px; border-radius: 8px; background: var(--primary-soft); flex: none; }
+    .ph-row i { flex: 1; height: 8px; border-radius: 4px; background: var(--muted); }
+    .ph-row b { width: 36px; height: 10px; border-radius: 4px; background: var(--fg); opacity: .7; }
+    .ph-cta { margin-top: auto; height: 36px; border-radius: 10px; background: var(--primary); }
+    .ph-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .ph-tile { aspect-ratio: 1; border: 1px solid var(--border); background: var(--card); border-radius: 10px; padding: 8px; display: flex; flex-direction: column; justify-content: flex-end; gap: 5px; }
+    .ph-tile::before { content: ""; flex: 1; border-radius: 6px; background: var(--primary-soft); }
+    .ph-tile i { height: 6px; width: 70%; border-radius: 3px; background: var(--muted); }
+    .ph-tile b { height: 8px; width: 45%; border-radius: 3px; background: var(--fg); opacity: .7; }
+    .ph-tile.low b { background: var(--accent); opacity: 1; }
+    .ph-chart { flex: 1; display: flex; align-items: flex-end; gap: 7px; padding: 12px 10px 10px; border: 1px solid var(--border); background: var(--card); border-radius: 10px; max-height: 150px; }
+    .ph-chart span { flex: 1; border-radius: 4px 4px 0 0; background: var(--primary); opacity: .85; }
+    .ph-chart span.hi { background: var(--accent); opacity: 1; }
+    .ph-total { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--border); padding-top: 10px; }
+    .ph-total i { width: 40%; height: 8px; border-radius: 4px; background: var(--muted); }
+    .ph-total b { width: 30%; height: 14px; border-radius: 4px; background: var(--fg); opacity: .85; }
+
+    .section { padding: 56px 0; }
+    @media (min-width: 900px) { .section { padding: 80px 0; } }
+    .section + .section { border-top: 1px solid var(--border); }
+    .section.alt { background: var(--card); }
+    .section-head { max-width: 62ch; margin-bottom: 28px; }
+    .section-head h2 { margin-bottom: 10px; }
+    .section-head p { color: var(--muted-fg); margin: 0; }
+
+    /* Problema / solución */
+    .ps { display: grid; gap: 16px; }
+    @media (min-width: 768px) { .ps { grid-template-columns: 1fr 1fr; } }
+    .ps-col { border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 20px; background: var(--card); }
+    .section.alt .ps-col { background: var(--bg); }
+    .ps-col h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .ps-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+    .ps-col li { display: flex; gap: 10px; align-items: flex-start; margin: 0; }
+    .ps-col li .ico { margin-top: 3px; }
+    .ps-before h3 .ico, .ps-before li .ico { color: var(--muted-fg); }
+    .ps-after { border-color: var(--primary); }
+    .ps-after h3 .ico, .ps-after li .ico { color: var(--success); }
+
+    /* Módulos */
+    .modules { list-style: none; padding: 0; margin: 0; display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    @media (min-width: 640px) { .modules { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .modules { grid-template-columns: repeat(3, 1fr); } }
+    .module { background: var(--card); padding: 24px 22px; margin: 0; }
+    .module-ico { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: var(--primary-soft); color: var(--primary); margin-bottom: 14px; }
+    .module h3 { margin-bottom: 6px; }
+    .module > p { color: var(--muted-fg); font-size: 0.9375rem; margin: 0 0 12px; }
+    .checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 0.9375rem; }
+    .checklist li { display: flex; gap: 8px; align-items: flex-start; margin: 0; }
+    .checklist .ico { color: var(--success); margin-top: 4px; }
+
+    /* Offline / privacidad */
+    .offline { display: grid; gap: 28px; align-items: start; }
+    @media (min-width: 900px) { .offline { grid-template-columns: 0.9fr 1.1fr; gap: 48px; } }
+    .offline-statement { border-left: 3px solid var(--accent); padding-left: 18px; }
+    .offline-statement h2 { margin-bottom: 12px; }
+    .offline-statement p { color: var(--muted-fg); }
+    .privacy-grid { display: grid; gap: 12px; }
+    @media (min-width: 600px) { .privacy-grid { grid-template-columns: repeat(2, 1fr); } }
+    .p-item { display: flex; gap: 14px; align-items: flex-start; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
+    .section.alt .p-item { background: var(--bg); }
+    .p-item .ico { color: var(--primary); margin-top: 2px; }
+    .p-item h3 { margin-bottom: 4px; font-size: 1rem; }
+    .p-item p { margin: 0; color: var(--muted-fg); font-size: 0.9375rem; }
+
+    /* Pasos */
+    .how { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; counter-reset: how; }
+    @media (min-width: 768px) { .how { grid-template-columns: repeat(3, 1fr); } }
+    .how li { margin: 0; counter-increment: how; padding: 22px 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+    .how li::before {
+      content: counter(how, decimal-leading-zero); display: block; margin-bottom: 12px;
+      font-size: 2rem; font-weight: 700; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
+    }
+    .how h3 { margin-bottom: 6px; }
+    .how p { margin: 0; color: var(--muted-fg); font-size: 0.9375rem; }
+
+    /* Capturas */
+    .shots { display: grid; gap: 32px; grid-template-columns: 1fr; }
+    @media (min-width: 720px) { .shots { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+    .shot { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .shot .phone { width: min(220px, 64vw); }
+    .shot figcaption { text-align: center; font-size: 0.9375rem; color: var(--muted-fg); }
+    .shot figcaption strong { display: block; color: var(--fg); }
+    .shots-note { display: flex; align-items: center; gap: 8px; margin: 24px 0 0; color: var(--muted-fg); font-size: 0.875rem; }
+
+    .audience { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .audience li { margin: 0; padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px; background: var(--card); font-size: 0.9375rem; }
+
+    /* FAQ */
+    .faq { max-width: var(--measure); border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item summary {
+      list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      min-height: 56px; padding: 14px 0; font-weight: 600; font-size: 1.0625rem;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary:hover { color: var(--primary); }
+    .faq-item .chev { color: var(--muted-fg); transform: rotate(90deg); transition: transform .15s ease; }
+    .faq-item[open] .chev { transform: rotate(-90deg); }
+    .faq-item p { margin: 0 0 18px; color: var(--muted-fg); max-width: 64ch; }
+
+    /* CTA final */
+    .cta { background: var(--primary); color: var(--on-primary); padding: 56px 0; }
+    .cta .wrap { display: grid; gap: 24px; align-items: center; }
+    @media (min-width: 768px) { .cta .wrap { grid-template-columns: 1fr auto; } }
+    .cta h2 { margin-bottom: 8px; color: var(--on-primary); }
+    .cta p { margin: 0; opacity: .9; max-width: 56ch; }
+    .cta .btn-primary { background: var(--on-primary); color: var(--primary); }
+    .cta .btn-primary:hover { filter: none; opacity: .92; }
+    .cta :focus-visible { outline-color: var(--on-primary); }
+
+    .contact-row { display: grid; gap: 16px; }
+    @media (min-width: 720px) { .contact-row { grid-template-columns: 1fr 1fr; align-items: center; } }
+    .docs-inline { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 4px 18px; }
+    .docs-inline li { margin: 0; }
+    .docs-inline a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="AdminPlus, inicio">
+        <span class="brand-mark" aria-hidden="true"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg></span>
+        <span>AdminPlus <small>por TotoLab</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Principal">
+        <ul>
+        <li><a href="index.html" aria-current="page">Inicio</a></li>
+        <li><a href="privacy-policy.html">Privacidad</a></li>
+        <li><a href="terminos_y_descripcion.html">Términos</a></li>
+        <li><a href="eliminar-datos.html">Eliminar datos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="contenido">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div>
+          <p class="badge">Versión <b>2.0</b> · Android</p>
+          <h1 id="hero-title">Su negocio en orden, <em>desde el teléfono</em>.</h1>
+          <p class="lead">Clientes, inventario, ventas, cobros y finanzas en una sola app para pulperías, tiendas, ferreterías, cafeterías y emprendimientos de Nicaragua y Centroamérica. Funciona sin internet y sus datos se quedan en su teléfono.</p>
+          <div class="actions">
+            <a class="btn btn-primary btn-lg" href="https://play.google.com/store/apps/details?id=com.totolab.myapplottery" rel="noopener"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg><span><small>Disponible en</small> Google Play</span></a>
+            <a class="btn btn-secondary" href="#modulos">Ver qué incluye <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
+          <ul class="facts" aria-label="Características clave">
+            <li><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg> Sin cuentas</li>
+            <li><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg> Sin publicidad</li>
+            <li><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg> Funciona sin conexión</li>
+          </ul>
+        </div>
+        <div role="img" aria-label="Ilustración de la pantalla de inicio de AdminPlus con resumen de ventas">
+          <div class="phone" aria-hidden="true"><div class="phone-screen">
+              <div class="ph-title"></div>
+              <div class="ph-kpis">
+                <div class="ph-kpi"><i></i><b></b></div>
+                <div class="ph-kpi acc"><i></i><b></b></div>
+              </div>
+              <div class="ph-chart"><span style="height:40%"></span><span style="height:65%"></span><span style="height:50%"></span><span class="hi" style="height:90%"></span><span style="height:70%"></span><span style="height:55%"></span></div>
+              <div class="ph-row"><span></span><i></i><b></b></div>
+            </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="problema" aria-labelledby="problema-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">El problema</p>
+          <h2 id="problema-title">El cuaderno ya no alcanza</h2>
+          <p>En un negocio pequeño, la misma persona vende, cobra, compra y lleva las cuentas. Cuando todo está en papel o en la memoria, el dinero se escapa sin que se note.</p>
+        </div>
+        <div class="ps">
+          <div class="ps-col ps-before">
+            <h3><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Sin AdminPlus</h3>
+            <ul>
+              <li><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span>Fiados anotados en un cuaderno que nadie revisa a tiempo.</span></li>
+              <li><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span>Se acaba un producto y uno se entera cuando el cliente lo pide.</span></li>
+              <li><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span>Al final del día no cuadra la caja y no se sabe por qué.</span></li>
+              <li><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span>Se vende mucho, pero no se sabe cuánto se gana de verdad.</span></li>
+            </ul>
+          </div>
+          <div class="ps-col ps-after">
+            <h3><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg> Con AdminPlus</h3>
+            <ul>
+              <li><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Cada crédito con su saldo, abonos y fecha de vencimiento.</span></li>
+              <li><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Alertas de stock bajo antes de quedarse sin producto.</span></li>
+              <li><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Apertura y cierre de caja con el detalle de cada venta y gasto.</span></li>
+              <li><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg><span>Reportes de márgenes y utilidad con un toque.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="modulos" aria-labelledby="modulos-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Módulos</p>
+          <h2 id="modulos-title">Todo lo que el mostrador necesita</h2>
+          <p>Los módulos trabajan juntos: una venta descuenta el stock, suma a la caja del día y, si es a crédito, crea la cuenta por cobrar del cliente.</p>
+        </div>
+        <ul class="modules">
+          <li class="module">
+            <span class="module-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <h3>Clientes</h3>
+            <p>Ficha de cada cliente con teléfono, correo, dirección y notas.</p>
+            <ul class="checklist">
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Historial de compras</li>
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Saldo pendiente al día</li>
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Búsqueda rápida</li>
+            </ul>
+          </li>
+          <li class="module">
+            <span class="module-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg></span>
+            <h3>Inventario y escáner</h3>
+            <p>Productos, categorías, SKU y código de barras con costo, precio y stock.</p>
+            <ul class="checklist">
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Entradas, salidas y ajustes</li>
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Alertas de stock bajo</li>
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Escanee con la cámara para buscar, vender o contar</li>
+            </ul>
+          </li>
+          <li class="module">
+            <span class="module-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg></span>
+            <h3>Facturación</h3>
+            <p>Facturas y recibos en segundos, listos para imprimir o compartir.</p>
+            <ul class="checklist">
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Descuentos e IVA configurable</li>
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Efectivo, tarjeta, transferencia o crédito</li>
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Impresora térmica Bluetooth y PDF</li>
+            </ul>
+          </li>
+          <li class="module">
+            <span class="module-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+            <h3>Cobros</h3>
+            <p>Ventas a crédito bajo control, sin cuaderno de fiados.</p>
+            <ul class="checklist">
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Abonos y fechas de vencimiento</li>
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Lista de quién le debe y cuánto</li>
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Recordatorios por WhatsApp que usted envía</li>
+            </ul>
+          </li>
+          <li class="module">
+            <span class="module-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg></span>
+            <h3>Finanzas</h3>
+            <p>Lo que entra y lo que sale, en el mismo lugar que sus ventas.</p>
+            <ul class="checklist">
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Gastos por categoría</li>
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Apertura y cierre de caja diaria</li>
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Utilidad real del negocio</li>
+            </ul>
+          </li>
+          <li class="module">
+            <span class="module-ico"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span>
+            <h3>Reportes</h3>
+            <p>Números claros para decidir qué comprar y a qué precio vender.</p>
+            <ul class="checklist">
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Ventas por día, semana o mes</li>
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Productos más vendidos</li>
+              <li><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>Márgenes y gastos</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="privacidad" aria-labelledby="privacidad-title">
+      <div class="wrap offline">
+        <div class="offline-statement">
+          <p class="eyebrow">Sin internet, sin nube</p>
+          <h2 id="privacidad-title">Funciona sin internet. Sus datos se quedan en su teléfono.</h2>
+          <p>AdminPlus guarda la información en una base de datos local del dispositivo. TotoLab no la ve, no la copia y no la vende. Usted decide cuándo algo sale del teléfono.</p>
+          <p><a href="privacy-policy.html">Leer la política de privacidad</a></p>
+        </div>
+        <div class="privacy-grid">
+          <div class="p-item"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20h.01"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/><path d="M5 12.859a10 10 0 0 1 5.17-2.69"/><path d="M19 12.859a10 10 0 0 0-2.007-1.523"/><path d="M2 8.82a15 15 0 0 1 4.177-2.643"/><path d="M22 8.82a15 15 0 0 0-11.288-3.764"/><path d="m2 2 20 20"/></svg><div><h3>Venda sin señal</h3><p>Vender, cobrar, imprimir y ver reportes no requiere conexión.</p></div></div>
+          <div class="p-item"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg><div><h3>Sin rastreo ni anuncios</h3><p>Sin cuentas, publicidad, analíticas ni SDK de terceros que recolecten datos.</p></div></div>
+          <div class="p-item"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg><div><h3>Usted decide qué sale</h3><p>Solo cuando comparte una factura, envía un recordatorio o exporta un respaldo.</p></div></div>
+          <div class="p-item"><svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg><div><h3>Respaldo en sus manos</h3><p>Exporte un archivo con toda la información e impórtelo en otro teléfono.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="como-funciona" aria-labelledby="como-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Cómo funciona</p>
+          <h2 id="como-title">Listo para vender en tres pasos</h2>
+        </div>
+        <ol class="how">
+          <li><h3>Instale y configure su negocio</h3><p>Descargue AdminPlus, escriba el nombre y los datos de su negocio y defina el IVA. Sin registros ni contraseñas.</p></li>
+          <li><h3>Cargue sus productos</h3><p>Agréguelos a mano o escaneando el código de barras, con costo, precio y existencias iniciales.</p></li>
+          <li><h3>Venda y cobre</h3><p>Facture en el mostrador, imprima o comparta el recibo y revise al cierre cuánto vendió y cuánto le deben.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="capturas" aria-labelledby="capturas-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">La app</p>
+          <h2 id="capturas-title">Así se ve AdminPlus</h2>
+          <p>Hecha para usarse con una mano, detrás del mostrador.</p>
+        </div>
+        <div class="shots">
+          <figure class="shot">
+            <div class="phone" aria-hidden="true"><div class="phone-screen">
+              <div class="ph-title"></div>
+              <div class="ph-row"><span></span><i></i><b></b></div>
+              <div class="ph-row"><span></span><i></i><b></b></div>
+              <div class="ph-row"><span></span><i></i><b></b></div>
+              <div class="ph-total"><i></i><b></b></div>
+              <div class="ph-cta"></div>
+            </div></div>
+            <figcaption><strong>Ventas</strong>Factura con total y cobro</figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="phone" aria-hidden="true"><div class="phone-screen">
+              <div class="ph-title"></div>
+              <div class="ph-bar"></div>
+              <div class="ph-grid">
+                <div class="ph-tile"><i></i><b></b></div>
+                <div class="ph-tile low"><i></i><b></b></div>
+                <div class="ph-tile"><i></i><b></b></div>
+                <div class="ph-tile"><i></i><b></b></div>
+              </div>
+            </div></div>
+            <figcaption><strong>Inventario</strong>Productos y alertas de stock bajo</figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="phone" aria-hidden="true"><div class="phone-screen">
+              <div class="ph-title"></div>
+              <div class="ph-kpis">
+                <div class="ph-kpi"><i></i><b></b></div>
+                <div class="ph-kpi acc"><i></i><b></b></div>
+              </div>
+              <div class="ph-chart"><span style="height:40%"></span><span style="height:65%"></span><span style="height:50%"></span><span class="hi" style="height:90%"></span><span style="height:70%"></span><span style="height:55%"></span></div>
+              <div class="ph-row"><span></span><i></i><b></b></div>
+            </div></div>
+            <figcaption><strong>Reportes</strong>Ventas y utilidad del período</figcaption>
+          </figure>
+        </div>
+        <p class="shots-note"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg> Ilustraciones de referencia. Pronto publicaremos capturas reales de la versión 2.0.</p>
+        <ul class="audience" aria-label="Tipos de negocio">
+          <li>Pulperías</li>
+          <li>Tiendas y misceláneas</li>
+          <li>Ferreterías</li>
+          <li>Cafeterías y comiderías</li>
+          <li>Distribuidores pequeños</li>
+          <li>Emprendedores</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section alt" id="preguntas" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Preguntas frecuentes</p>
+          <h2 id="faq-title">Lo que más nos preguntan</h2>
+        </div>
+        <div class="faq">
+          <details class="faq-item">
+            <summary>¿Necesito internet para usar AdminPlus?<svg class="ico chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></summary>
+            <p>No. Puede vender, cobrar, registrar gastos, imprimir y ver reportes sin conexión. Internet solo se usa para avisarle que está desconectado, abrir enlaces y compartir documentos si usted lo decide.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Dónde se guardan mis datos?<svg class="ico chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></summary>
+            <p>En una base de datos local dentro de su teléfono. TotoLab no tiene acceso a ellos y no hay copias en servidores. Para protegerlos, exporte respaldos con frecuencia y guárdelos en un lugar seguro.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Tengo que crear una cuenta?<svg class="ico chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></summary>
+            <p>No. AdminPlus no tiene inicio de sesión. Si en el futuro se agrega una cuenta o un respaldo en la nube, será opcional y la política de privacidad se actualizará antes.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Qué impresora puedo usar?<svg class="ico chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></summary>
+            <p>Impresoras térmicas portátiles con Bluetooth, las más comunes en pulperías y tiendas. También puede generar un PDF de la factura y compartirlo sin imprimir.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Las facturas de AdminPlus sirven ante la DGI?<svg class="ico chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></summary>
+            <p>Son documentos de control interno. Si su negocio está obligado a emitir facturas autorizadas por la DGI, debe seguir usando el sistema o talonario autorizado. Consulte a su contador.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Cómo paso mis datos a otro teléfono?<svg class="ico chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></summary>
+            <p>Exporte un respaldo desde AdminPlus, copie el archivo al teléfono nuevo e impórtelo desde la app.</p>
+          </details>
+          <details class="faq-item">
+            <summary>¿Cómo borro mi información?<svg class="ico chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></summary>
+            <p>Desde la app (registro por registro o con Ajustes &gt; Restablecer datos), borrando los datos de la app en Android o desinstalándola. Vea <a href="eliminar-datos.html">Eliminar datos</a>.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-title">
+      <div class="wrap">
+        <div>
+          <h2 id="cta-title">Ponga su negocio en orden hoy</h2>
+          <p>Descargue AdminPlus en su teléfono Android y empiece a vender en minutos.</p>
+        </div>
+        <a class="btn btn-primary btn-lg" href="https://play.google.com/store/apps/details?id=com.totolab.myapplottery" rel="noopener"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg><span><small>Disponible en</small> Google Play</span></a>
+      </div>
+    </section>
+
+    <section class="section" id="contacto" aria-labelledby="contacto-title">
+      <div class="wrap contact-row">
+        <div class="section-head" style="margin:0">
+          <p class="eyebrow">Contacto</p>
+          <h2 id="contacto-title">¿Preguntas o sugerencias?</h2>
+          <p>Escríbanos. AdminPlus es desarrollada por TotoLab en Managua, Nicaragua.</p>
+          <ul class="docs-inline" aria-label="Documentos">
+            <li><a href="privacy-policy.html"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> Política de privacidad</a></li>
+            <li><a href="terminos_y_descripcion.html"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg> Términos y condiciones</a></li>
+            <li><a href="eliminar-datos.html"><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg> Eliminar datos</a></li>
+          </ul>
+        </div>
+        <div class="contact-card">
+          <p><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> <a href="mailto:totolab2025@gmail.com">totolab2025@gmail.com</a></p>
+          <p><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Managua, Nicaragua</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 TotoLab · Managua, Nicaragua. AdminPlus es una marca de TotoLab.</p>
+      <ul aria-label="Documentos legales">
+        <li><a href="privacy-policy.html">Privacidad</a></li>
+        <li><a href="terminos_y_descripcion.html">Términos</a></li>
+        <li><a href="eliminar-datos.html">Eliminar datos</a></li>
+        <li><a href="mailto:totolab2025@gmail.com">Contacto</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

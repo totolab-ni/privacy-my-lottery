@@ -1,302 +1,396 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Términos y Condiciones - AdminPlus</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Descripción y Términos y Condiciones – AdminPlus</title>
+  <meta name="description" content="Descripción de AdminPlus 2.0, app de gestión para pequeños negocios, y sus Términos y Condiciones de uso.">
+  <meta name="theme-color" content="#1E3A8A" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_NI">
+  <meta property="og:site_name" content="AdminPlus">
+  <meta property="og:title" content="AdminPlus: descripción y Términos y Condiciones">
+  <meta property="og:description" content="Descripción de AdminPlus 2.0, app de gestión para pequeños negocios, y sus Términos y Condiciones de uso.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --primary: #1E3A8A;
+      --on-primary: #FFFFFF;
+      --fg: #0F172A;
+      --accent: #A16207;
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --muted: #E8ECF1;
+      --muted-fg: #475569;
+      --border: #E2E8F0;
+      --success: #15803D;
+      --destructive: #DC2626;
+      --primary-soft: #EEF2FB;
+      --accent-soft: #FBF6EA;
+      --radius: 12px;
+      --measure: 72ch;
+      --font: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #93B4FF;
+        --on-primary: #0B1220;
+        --fg: #E6ECF5;
+        --accent: #E3B341;
+        --bg: #0B1220;
+        --card: #111A2E;
+        --muted: #18233A;
+        --muted-fg: #A3B1C6;
+        --border: #22304A;
+        --success: #4ADE80;
+        --destructive: #F87171;
+        --primary-soft: #142140;
+        --accent-soft: #261F10;
+      }
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font);
+      font-size: 1rem;
+      line-height: 1.65;
+      overflow-wrap: break-word;
+    }
+    img, svg { display: block; max-width: 100%; }
+    .ico { flex: none; }
+    a { color: var(--primary); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+    .skip {
+      position: absolute; left: 16px; top: -48px; z-index: 10;
+      background: var(--primary); color: var(--on-primary);
+      padding: 8px 14px; border-radius: 8px; font-weight: 600; text-decoration: none;
+    }
+    .skip:focus { top: 12px; }
+    .wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 768px) { .wrap { padding: 0 24px; } }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.8;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            min-height: 100vh;
-            padding: 20px;
-        }
+    /* Header */
+    .site-header { background: var(--card); border-bottom: 1px solid var(--border); }
+    .site-header .wrap {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 8px 24px; padding-top: 12px; padding-bottom: 12px;
+    }
+    .brand {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--fg); text-decoration: none; font-weight: 700; font-size: 1.125rem; letter-spacing: -0.01em;
+      min-height: 44px;
+    }
+    .brand-mark {
+      display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px;
+      background: var(--primary); color: var(--on-primary);
+    }
+    .brand small { font-weight: 500; font-size: 0.8125rem; color: var(--muted-fg); }
+    .site-nav { margin-left: -7px; }
+    .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 2px; }
+    @media (min-width: 720px) { .site-nav { margin-left: 0; } }
+    .site-nav a {
+      display: inline-flex; align-items: center; min-height: 44px; padding: 0 7px;
+      color: var(--muted-fg); text-decoration: none; font-weight: 500; font-size: 0.875rem;
+      border-radius: 8px; transition: color .15s ease, background-color .15s ease;
+    }
+    .site-nav a:hover { color: var(--fg); background: var(--muted); }
+    @media (min-width: 480px) { .site-nav a { padding: 0 10px; font-size: 0.9375rem; } }
+    .site-nav a[aria-current="page"] { color: var(--primary); box-shadow: inset 0 -2px 0 var(--primary); border-radius: 0; }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
+    /* Typography */
+    h1, h2, h3 { line-height: 1.25; letter-spacing: -0.015em; margin: 0; }
+    h1 { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem); font-weight: 600; }
+    h3 { font-size: 1.0625rem; font-weight: 600; }
+    p { margin: 0 0 14px; }
+    ul, ol { margin: 0 0 14px; padding-left: 22px; }
+    li { margin: 0 0 6px; }
+    strong { font-weight: 600; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; margin: 0 0 12px;
+      font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-fg);
+    }
+    .eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--accent); }
+    .lead { font-size: 1.125rem; color: var(--muted-fg); max-width: 60ch; }
+    .tnum { font-variant-numeric: tabular-nums; }
 
-        .header {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            padding: 60px 40px;
-            text-align: center;
-            color: white;
-        }
+    /* Legal document layout */
+    .doc-head { padding: 40px 0 28px; border-bottom: 1px solid var(--border); background: var(--card); }
+    .doc-head h1 { max-width: 24ch; margin-bottom: 12px; }
+    .meta { display: grid; gap: 4px 24px; margin: 16px 0 0; padding: 0; font-size: 0.9375rem; color: var(--muted-fg); font-variant-numeric: tabular-nums; }
+    .meta div { display: flex; flex-wrap: wrap; gap: 0 6px; }
+    .meta dt { font-weight: 600; color: var(--fg); }
+    .meta dd { margin: 0; }
+    @media (min-width: 640px) { .meta { grid-template-columns: repeat(2, minmax(0, max-content)); } }
+    .doc { padding-top: 32px; padding-bottom: 56px; }
+    .prose { max-width: var(--measure); }
+    .prose > section { padding-top: 32px; margin-top: 32px; border-top: 1px solid var(--border); scroll-margin-top: 16px; }
+    .prose > section:first-of-type { border-top: 0; margin-top: 0; }
+    .prose h2 { margin-bottom: 14px; display: flex; gap: 12px; align-items: baseline; }
+    .prose h2 .num { color: var(--accent); font-variant-numeric: tabular-nums; font-weight: 600; min-width: 1.5em; }
+    .prose h3 { margin: 22px 0 8px; }
 
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    .callout {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: var(--primary-soft); border: 1px solid var(--border); border-left: 3px solid var(--primary);
+      border-radius: var(--radius); padding: 18px 18px; margin: 0 0 24px;
+    }
+    .callout .ico { color: var(--primary); margin-top: 3px; }
+    .callout.warn { background: var(--accent-soft); border-left-color: var(--accent); }
+    .callout.warn .ico { color: var(--accent); }
+    .callout > div > :last-child { margin-bottom: 0; }
+    .callout ul { margin-bottom: 0; }
 
-        .header .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            font-weight: 300;
-        }
+    .toc { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin: 0 0 8px; }
+    .toc h2 { font-size: 1rem; margin: 0 0 10px; }
+    .toc ol { margin: 0; padding-left: 0; list-style: none; columns: 1; column-gap: 24px; counter-reset: toc; }
+    @media (min-width: 640px) { .toc ol { columns: 2; } }
+    .toc li { break-inside: avoid; margin: 0; counter-increment: toc; }
+    .toc a { display: flex; gap: 8px; padding: 6px 0; text-decoration: none; color: var(--fg); min-height: 36px; align-items: center; }
+    .toc a::before { content: counter(toc) "."; color: var(--muted-fg); font-variant-numeric: tabular-nums; min-width: 1.75em; }
+    .toc a:hover { color: var(--primary); text-decoration: underline; }
 
-        .content {
-            padding: 50px 40px;
-        }
+    .table-wrap { overflow-x: auto; margin: 0 0 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); -webkit-overflow-scrolling: touch; }
+    table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.9375rem; }
+    caption { text-align: left; padding: 12px 14px 0; color: var(--muted-fg); font-size: 0.875rem; }
+    th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+    tbody tr:last-child td { border-bottom: 0; }
+    th { font-weight: 600; color: var(--muted-fg); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.04em; background: var(--muted); }
+    td:first-child { font-weight: 600; }
 
-        .section {
-            background: #f8faff;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-left: 5px solid #4facfe;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        }
+    .steps { list-style: none; padding: 0; counter-reset: step; }
+    .steps > li { position: relative; padding: 0 0 18px 48px; counter-increment: step; margin: 0; }
+    .steps > li::before {
+      content: counter(step); position: absolute; left: 0; top: 0;
+      width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+      border: 1.5px solid var(--primary); color: var(--primary); font-weight: 600; font-variant-numeric: tabular-nums; font-size: 0.9375rem;
+    }
+    .steps > li > strong:first-child { display: block; }
 
-        .section h2 {
-            color: #2c3e50;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .contact-card p { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; }
+    .contact-card p:last-child { margin-bottom: 0; }
+    .contact-card .ico { color: var(--muted-fg); }
 
-        .section h2::before {
-            content: "✦";
-            color: #4facfe;
-            font-size: 1.2rem;
-        }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 48px; padding: 0 20px; border-radius: 10px; font-weight: 600; font-size: 1rem;
+      text-decoration: none; border: 1px solid transparent; transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
+    }
+    .btn-primary { background: var(--primary); color: var(--on-primary); }
+    .btn-primary:hover { filter: brightness(1.08); }
+    .btn-secondary { background: var(--card); color: var(--fg); border-color: var(--border); }
+    .btn-secondary:hover { background: var(--muted); }
+    .btn:active { transform: scale(0.98); }
 
-        .section p {
-            color: #555;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
+    /* Footer */
+    .site-footer { border-top: 1px solid var(--border); background: var(--card); color: var(--muted-fg); font-size: 0.9375rem; }
+    .site-footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center; padding-top: 24px; padding-bottom: 24px; }
+    .site-footer p { margin: 0; }
+    .site-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 16px; }
+    .site-footer li { margin: 0; }
+    .site-footer a { color: var(--muted-fg); display: inline-flex; min-height: 44px; align-items: center; }
+    .site-footer a:hover { color: var(--fg); }
 
-        .section ul {
-            list-style: none;
-            padding-left: 0;
-        }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+    @media print {
+      .site-header, .site-footer, .skip, .toc { display: none; }
+      body { background: #fff; color: #000; }
+    }
 
-        .section li {
-            background: white;
-            margin: 15px 0;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid #4facfe;
-            position: relative;
-        }
-
-        .section li::before {
-            content: "●";
-            color: #4facfe;
-            position: absolute;
-            left: -10px;
-            top: 20px;
-            background: white;
-            padding: 0 5px;
-        }
-
-        .section strong {
-            color: #2c3e50;
-        }
-
-        .terms-section {
-            background: #fff;
-            border-radius: 15px;
-            padding: 40px;
-            margin: 30px 0;
-            border: 2px solid #e8f4fd;
-        }
-
-        .terms-header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #e8f4fd;
-        }
-
-        .terms-header h1 {
-            color: #2c3e50;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .terms-header .update-date {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            font-style: italic;
-        }
-
-        .terms-header .welcome {
-            color: #555;
-            margin-top: 20px;
-            font-size: 1.1rem;
-        }
-
-        .term-item {
-            background: #f8faff;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-left: 4px solid #e74c3c;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .term-item h2 {
-            color: #e74c3c;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .term-item h2::before {
-            content: attr(data-number);
-            background: #e74c3c;
-            color: white;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        .important-note {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-            text-align: center;
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(255, 154, 158, 0.3);
-        }
-
-        .important-note h2 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .divider {
-            height: 3px;
-            background: linear-gradient(90deg, #4facfe, #00f2fe);
-            border: none;
-            margin: 50px 0;
-            border-radius: 2px;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            .header {
-                padding: 40px 20px;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .content {
-                padding: 30px 20px;
-            }
-
-            .section, .terms-section, .term-item {
-                padding: 20px;
-            }
-        }
-    </style>
+    .dm-list { list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 12px; }
+    .dm { display: flex; gap: 12px; align-items: flex-start; margin: 0; padding: 14px 16px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
+    .dm .ico { color: var(--primary); margin-top: 3px; }
+    .part { font-size: 0.8125rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-fg); margin: 48px 0 8px; padding-top: 24px; border-top: 2px solid var(--fg); }
+    .part:first-child { margin-top: 0; }
+    .part-title { margin-bottom: 16px; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📊 AdminPlus – Gestión integral de rifas, ventas e inventarios</h1>
-            <div class="subtitle">Solución completa para comunidades, escuelas e instituciones locales</div>
-        </div>
-
-        <div class="content">
-            <div class="section">
-                <p>AdminPlus es una aplicación diseñada para simplificar la organización de rifas, la administración de ventas y la gestión de recursos en <strong>comunidades, escuelas e instituciones locales</strong>.</p>
-                <p>Con esta herramienta podés llevar el control de rifas, facturación, inventarios y préstamos en un solo lugar, de manera rápida y ordenada.</p>
-                <p>Ideal para <strong>comités escolares, iglesias, organizaciones benéficas o negocios locales</strong> que buscan una solución práctica y confiable.</p>
-            </div>
-
-            <div class="section">
-                <h2>🧩 Funciones principales</h2>
-                <ul>
-                    <li><strong>Rifas y sorteos:</strong> Registro de compradores, control de tickets vendidos y consulta de historial.</li>
-                    <li><strong>Facturación:</strong> Generación y control de facturas para ventas y actividades.</li>
-                    <li><strong>Inventarios:</strong> Administración de productos, entradas y materiales de eventos.</li>
-                    <li><strong>Préstamos:</strong> Registro y seguimiento de préstamos internos o comunitarios.</li>
-                    <li><strong>Licencias:</strong> Control de acceso y uso autorizado.</li>
-                    <li><strong>Ganadores:</strong> Visualización del número ganador (definido por los organizadores).</li>
-                </ul>
-            </div>
-
-            <div class="important-note">
-                <h2>🔐 Importante</h2>
-                <p>AdminPlus es una herramienta de <strong>gestión administrativa</strong> que funciona completamente <strong>offline</strong>. No realiza sorteos automáticos, no procesa pagos en línea, ni ofrece premios con valor monetario. Su función es exclusivamente de <strong>apoyo organizacional</strong> para la administración integral de actividades gestionadas por las instituciones usuarias.</p>
-            </div>
-
-            <hr class="divider">
-
-            <div class="terms-section">
-                <div class="terms-header">
-                    <h1>📄 Términos y Condiciones</h1>
-                    <div class="update-date"><strong>Última actualización:</strong> 2025-08-29</div>
-                    <div class="welcome">Bienvenido a AdminPlus. Al usar esta aplicación, aceptás los siguientes términos:</div>
-                </div>
-
-                <div class="term-item">
-                    <h2 data-number="1">Uso de la aplicación</h2>
-                    <p>AdminPlus es una herramienta de <strong>gestión integral</strong> que incluye administración de rifas, facturación, inventarios y préstamos, destinada a administradores autorizados de comunidades, escuelas e instituciones locales. No está destinada al público general como plataforma de juego o azar.</p>
-                </div>
-
-                <div class="term-item">
-                    <h2 data-number="2">Funciones administrativas únicamente</h2>
-                    <p>Esta aplicación <strong>no procesa pagos en línea</strong>, ni entrega premios o beneficios monetarios. Las funciones de facturación son para registro administrativo local. Los sorteos, ventas y préstamos registrados en la app son organizados y gestionados por <strong>entidades externas</strong> (colegios, comunidades, organizaciones), fuera del control directo de esta aplicación.</p>
-                </div>
-
-                <div class="term-item">
-                    <h2 data-number="3">Validación de licencia</h2>
-                    <p>El acceso a la app puede estar sujeto a verificación mediante una clave o licencia proporcionada por TotoLab para uso autorizado.</p>
-                </div>
-
-                <div class="term-item">
-                    <h2 data-number="4">Protección de datos</h2>
-                    <p>AdminPlus prioriza la <strong>privacidad y seguridad</strong> de la información:</p>
-                    <ul>
-                        <li><strong>Funcionamiento offline:</strong> La aplicación opera completamente offline con almacenamiento local SQLite, sin requerir conexión a internet para su funcionamiento básico.</li>
-                        <li><strong>Almacenamiento local:</strong> Toda la información registrada (clientes, inventarios, facturas, préstamos) se almacena únicamente en el dispositivo del usuario administrador.</li>
-                        <li><strong>No recopilación de datos sensibles:</strong> No se recopilan ni transmiten datos personales sensibles a servidores externos durante el uso normal de la aplicación.</li>
-                        <li><strong>Respaldo opcional en la nube:</strong> En futuras versiones, se implementará un sistema opcional de respaldo seguro en la nube, donde los datos serán <strong>encriptados</strong> y asociados únicamente a la cuenta de correo del usuario como identificador. Este respaldo será exclusivamente para <strong>fines de backup</strong> y recuperación de datos, manteniendo la privacidad total del contenido.</li>
-                        <li><strong>Control del usuario:</strong> El usuario tendrá control total sobre cuándo activar o desactivar el respaldo en la nube, y podrá eliminar sus datos del respaldo en cualquier momento.</li>
-                    </ul>
-                </div>
-
-                <div class="term-item">
-                    <h2 data-number="5">Limitación de responsabilidad</h2>
-                    <p>TotoLab no se responsabiliza por sorteos, premios, resultados, transacciones comerciales, préstamos, inventarios, o decisiones administrativas tomadas por las instituciones usuarias. AdminPlus es únicamente una herramienta de apoyo organizacional y los usuarios son responsables del uso adecuado y legal de la información registrada.</p>
-                </div>
-            </div>
-        </div>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="AdminPlus, inicio">
+        <span class="brand-mark" aria-hidden="true"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg></span>
+        <span>AdminPlus <small>por TotoLab</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Principal">
+        <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="privacy-policy.html">Privacidad</a></li>
+        <li><a href="terminos_y_descripcion.html" aria-current="page">Términos</a></li>
+        <li><a href="eliminar-datos.html">Eliminar datos</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
+  <main id="contenido">
+    <div class="doc-head">
+      <div class="wrap">
+        <p class="eyebrow">Producto y condiciones</p>
+        <h1>AdminPlus: descripción y Términos y Condiciones</h1>
+        <dl class="meta">
+          <div><dt>Última actualización:</dt><dd>4 de octubre de 2026</dd></div>
+          <div><dt>Versión de la app:</dt><dd>2.0</dd></div>
+          <div><dt>Desarrollador:</dt><dd>TotoLab, Managua, Nicaragua</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="wrap doc">
+      <article class="prose">
+        <p class="part" id="descripcion">Parte 1</p>
+        <h2 class="part-title">Descripción del producto</h2>
+        <p>AdminPlus es una aplicación para Android que ayuda a administrar pequeños negocios: <strong>pulperías, tiendas, ferreterías, cafeterías, distribuidores y emprendedores</strong> de Nicaragua y Centroamérica. Reúne en un solo lugar los clientes, el inventario, las ventas, los cobros y las finanzas del negocio, y funciona sin conexión a internet.</p>
+        <ul class="dm-list">
+            <li class="dm"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><div><strong>Clientes.</strong> Ficha de cada cliente con teléfono, correo, dirección y notas. Historial de compras y saldo pendiente a la vista.</div></li>
+            <li class="dm"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg><div><strong>Inventario.</strong> Productos y categorías con SKU, código de barras, costo, precio y stock. Entradas, salidas, ajustes y alertas de stock bajo.</div></li>
+            <li class="dm"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg><div><strong>Facturación y ventas.</strong> Facturas y recibos con descuentos, IVA configurable y pagos en efectivo, tarjeta, transferencia o crédito. Impresión térmica Bluetooth y PDF.</div></li>
+            <li class="dm"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><strong>Cobros.</strong> Cuentas por cobrar de ventas a crédito, abonos y fechas de vencimiento. Recordatorios que usted envía por WhatsApp u otra app.</div></li>
+            <li class="dm"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg><div><strong>Finanzas.</strong> Ingresos, gastos por categoría y caja diaria con apertura y cierre. Utilidad real del negocio, sin hojas de cálculo.</div></li>
+            <li class="dm"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg><div><strong>Reportes.</strong> Ventas por período, productos más vendidos, márgenes y gastos para decidir qué comprar y qué precio poner.</div></li>
+            <li class="dm"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg><div><strong>Escáner.</strong> Lea códigos de barras y QR con la cámara para buscar un producto, venderlo o contar inventario más rápido.</div></li>
+            <li class="dm"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg><div><strong>Respaldo.</strong> Exporte toda la información a un archivo y guárdelo donde prefiera. Impórtelo para recuperar sus datos en otro teléfono.</div></li>
+        </ul>
+        <div class="callout" role="note">
+          <svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          <div>
+            <p><strong>Importante.</strong> AdminPlus es una herramienta de <strong>gestión administrativa</strong> que guarda la información solo en el dispositivo. No procesa pagos en línea, no cobra a sus clientes en su nombre y no envía información a TotoLab. Los detalles están en la <a href="privacy-policy.html">Política de Privacidad</a>.</p>
+          </div>
+        </div>
+
+        <p class="part" id="terminos">Parte 2</p>
+        <h2 class="part-title">Términos y Condiciones</h2>
+        <p>Estos términos regulan el uso de AdminPlus. Léalos con atención.</p>
+
+        <nav class="toc" aria-labelledby="toc-title">
+          <h2 id="toc-title">Contenido</h2>
+          <ol>
+            <li><a href="#aceptacion">Aceptación</a></li>
+            <li><a href="#uso">Uso de la aplicación</a></li>
+            <li><a href="#requisitos">Requisitos</a></li>
+            <li><a href="#datos">Datos del usuario y respaldos</a></li>
+            <li><a href="#fiscal">Facturas y obligaciones fiscales</a></li>
+            <li><a href="#clientes">Datos de clientes</a></li>
+            <li><a href="#terceros">Servicios y dispositivos de terceros</a></li>
+            <li><a href="#propiedad">Propiedad intelectual</a></li>
+            <li><a href="#garantia">Sin garantía</a></li>
+            <li><a href="#responsabilidad">Limitación de responsabilidad</a></li>
+            <li><a href="#cambios">Cambios en la app y en estos términos</a></li>
+            <li><a href="#ley">Ley aplicable</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ol>
+        </nav>
+
+        <section id="aceptacion">
+          <h2><span class="num">1.</span> Aceptación</h2>
+          <p>Al descargar, instalar o usar AdminPlus, el usuario acepta estos Términos y Condiciones y la <a href="privacy-policy.html">Política de Privacidad</a>. Si no está de acuerdo, debe dejar de usar la aplicación y desinstalarla.</p>
+        </section>
+
+        <section id="uso">
+          <h2><span class="num">2.</span> Uso de la aplicación</h2>
+          <p>AdminPlus se ofrece como herramienta de apoyo para registrar y organizar la información de un negocio. El usuario se compromete a:</p>
+          <ul>
+            <li>Usar la aplicación para fines lícitos y conforme a la legislación aplicable.</li>
+            <li>No usarla para registrar actividades ilegales ni para engañar a terceros con documentos falsos.</li>
+            <li>No intentar descompilar, modificar, redistribuir ni vender la aplicación, salvo lo que permita la ley.</li>
+          </ul>
+        </section>
+
+        <section id="requisitos">
+          <h2><span class="num">3.</span> Requisitos</h2>
+          <p>AdminPlus está dirigida a personas mayores de 18 años que administran un negocio o actúan en su nombre. Requiere un dispositivo Android compatible. Algunas funciones necesitan hardware adicional, como una impresora térmica Bluetooth o una cámara.</p>
+        </section>
+
+        <section id="datos">
+          <h2><span class="num">4.</span> Datos del usuario y respaldos</h2>
+          <p>La información que el usuario registra se guarda únicamente en su dispositivo. Por eso:</p>
+          <ul>
+            <li>El usuario es el único responsable de la exactitud de los datos que ingresa y de su conservación.</li>
+            <li>Si el dispositivo se pierde, se daña, se restablece o se desinstala la app, la información puede perderse definitivamente. TotoLab no puede recuperarla porque no guarda copias.</li>
+            <li>Se recomienda exportar respaldos con frecuencia y guardarlos en un lugar seguro.</li>
+          </ul>
+        </section>
+
+        <section id="fiscal">
+          <h2><span class="num">5.</span> Facturas y obligaciones fiscales</h2>
+          <div class="callout warn" role="note">
+            <svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+            <div>
+              <p>Las facturas y recibos que genera AdminPlus son <strong>documentos de control interno</strong>. La aplicación <strong>no reemplaza</strong> los sistemas de facturación, las facturas autorizadas ni los registros contables que la Dirección General de Ingresos (DGI) u otra autoridad tributaria exija a su negocio.</p>
+            </div>
+          </div>
+          <p>El usuario es responsable de cumplir sus obligaciones fiscales y contables, de configurar correctamente impuestos como el IVA y de verificar que los montos, descuentos e impuestos calculados sean correctos antes de entregar un documento a un cliente. Ante cualquier duda, debe consultar a un contador o a la autoridad tributaria correspondiente.</p>
+        </section>
+
+        <section id="clientes">
+          <h2><span class="num">6.</span> Datos de clientes</h2>
+          <p>Al registrar datos de sus clientes, el usuario actúa como responsable de esa información. Le corresponde contar con su consentimiento cuando la ley lo exija, usar los datos solo para fines legítimos de su negocio y enviar recordatorios de cobro de forma respetuosa y conforme a la ley.</p>
+        </section>
+
+        <section id="terceros">
+          <h2><span class="num">7.</span> Servicios y dispositivos de terceros</h2>
+          <p>AdminPlus puede interactuar con aplicaciones y dispositivos de terceros elegidos por el usuario, como WhatsApp, el menú de compartir de Android, servicios de almacenamiento o impresoras térmicas. TotoLab no controla esos productos y no responde por su funcionamiento, disponibilidad ni por el tratamiento que hagan de la información compartida a través de ellos.</p>
+        </section>
+
+        <section id="propiedad">
+          <h2><span class="num">8.</span> Propiedad intelectual</h2>
+          <p>AdminPlus, su código, diseño, nombre y logotipos son propiedad de TotoLab y están protegidos por las leyes de propiedad intelectual. TotoLab otorga al usuario un derecho personal, no exclusivo e intransferible de usar la aplicación de acuerdo con estos términos. La información que el usuario registra en la app le pertenece al usuario.</p>
+        </section>
+
+        <section id="garantia">
+          <h2><span class="num">9.</span> Sin garantía</h2>
+          <p>AdminPlus se ofrece <strong>"tal cual" y "según disponibilidad"</strong>, sin garantías de ningún tipo, expresas o implícitas, incluidas las de funcionamiento ininterrumpido, ausencia de errores o adecuación a un propósito particular. TotoLab trabaja para que la aplicación sea confiable, pero no garantiza que los cálculos, reportes o documentos estén libres de errores en todas las circunstancias.</p>
+        </section>
+
+        <section id="responsabilidad">
+          <h2><span class="num">10.</span> Limitación de responsabilidad</h2>
+          <p>En la medida en que lo permita la ley, TotoLab no será responsable por daños directos, indirectos, incidentales o consecuentes derivados del uso o de la imposibilidad de usar AdminPlus, incluidos la pérdida de datos, de ventas o de ganancias, errores en precios, inventario, impuestos o cobros, sanciones fiscales, ni decisiones comerciales tomadas con base en la información de la aplicación. El usuario es responsable de revisar la información antes de usarla.</p>
+        </section>
+
+        <section id="cambios">
+          <h2><span class="num">11.</span> Cambios en la app y en estos términos</h2>
+          <p>TotoLab puede actualizar, modificar o retirar funciones de AdminPlus. En el futuro podría ofrecer funciones opcionales, como inicio de sesión o respaldo en la nube; si eso ocurre, la Política de Privacidad se actualizará antes de activarlas.</p>
+          <p>Estos términos pueden cambiar. La versión vigente estará siempre publicada en esta dirección con su fecha de actualización. El uso continuado de la aplicación después de un cambio implica la aceptación de los nuevos términos.</p>
+        </section>
+
+        <section id="ley">
+          <h2><span class="num">12.</span> Ley aplicable</h2>
+          <p>Estos términos se rigen por las leyes de la República de Nicaragua. Cualquier controversia se someterá a los tribunales competentes de Managua, Nicaragua, sin perjuicio de los derechos que la ley de protección al consumidor del país de residencia del usuario le reconozca.</p>
+        </section>
+
+        <section id="contacto">
+          <h2><span class="num">13.</span> Contacto</h2>
+          <p>Para consultas sobre estos términos:</p>
+          <div class="contact-card">
+            <p><strong>TotoLab</strong></p>
+            <p><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> <a href="mailto:totolab2025@gmail.com">totolab2025@gmail.com</a></p>
+            <p><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Managua, Nicaragua</p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 TotoLab · Managua, Nicaragua. AdminPlus es una marca de TotoLab.</p>
+      <ul aria-label="Documentos legales">
+        <li><a href="privacy-policy.html">Privacidad</a></li>
+        <li><a href="terminos_y_descripcion.html">Términos</a></li>
+        <li><a href="eliminar-datos.html">Eliminar datos</a></li>
+        <li><a href="mailto:totolab2025@gmail.com">Contacto</a></li>
+      </ul>
+    </div>
+  </footer>
 </body>
 </html>

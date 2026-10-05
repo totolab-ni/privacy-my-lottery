@@ -2,181 +2,436 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Política de Privacidad – AdminPlus</title>
-  <meta name="description" content="Política de privacidad de la aplicación AdminPlus, desarrollada por TotoLab.">
+  <meta name="description" content="Política de privacidad de AdminPlus, la app de gestión para pequeños negocios de TotoLab. Los datos se guardan solo en el dispositivo.">
+  <meta name="theme-color" content="#1E3A8A" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_NI">
+  <meta property="og:site_name" content="AdminPlus">
+  <meta property="og:title" content="Política de Privacidad de AdminPlus">
+  <meta property="og:description" content="Política de privacidad de AdminPlus, la app de gestión para pequeños negocios de TotoLab. Los datos se guardan solo en el dispositivo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
   <style>
     :root {
-      --bg: #f6f7fb;
-      --surface: #ffffff;
-      --text: #1f2933;
-      --muted: #5f6b7a;
-      --accent: #2563eb;
-      --border: #e3e7ee;
-      --note: #eef4ff;
+      color-scheme: light dark;
+      --primary: #1E3A8A;
+      --on-primary: #FFFFFF;
+      --fg: #0F172A;
+      --accent: #A16207;
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --muted: #E8ECF1;
+      --muted-fg: #475569;
+      --border: #E2E8F0;
+      --success: #15803D;
+      --destructive: #DC2626;
+      --primary-soft: #EEF2FB;
+      --accent-soft: #FBF6EA;
+      --radius: 12px;
+      --measure: 72ch;
+      --font: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0f1419;
-        --surface: #182028;
-        --text: #e6ebf0;
-        --muted: #9aa7b4;
-        --accent: #6ea4ff;
-        --border: #2a3440;
-        --note: #1c2a3d;
+        --primary: #93B4FF;
+        --on-primary: #0B1220;
+        --fg: #E6ECF5;
+        --accent: #E3B341;
+        --bg: #0B1220;
+        --card: #111A2E;
+        --muted: #18233A;
+        --muted-fg: #A3B1C6;
+        --border: #22304A;
+        --success: #4ADE80;
+        --destructive: #F87171;
+        --primary-soft: #142140;
+        --accent-soft: #261F10;
       }
     }
-    * { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
-      padding: 24px 16px 48px;
       background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
+      color: var(--fg);
+      font-family: var(--font);
+      font-size: 1rem;
+      line-height: 1.65;
+      overflow-wrap: break-word;
     }
-    main {
-      max-width: 760px;
-      margin: 0 auto;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 32px 24px;
+    img, svg { display: block; max-width: 100%; }
+    .ico { flex: none; }
+    a { color: var(--primary); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+    .skip {
+      position: absolute; left: 16px; top: -48px; z-index: 10;
+      background: var(--primary); color: var(--on-primary);
+      padding: 8px 14px; border-radius: 8px; font-weight: 600; text-decoration: none;
     }
-    @media (min-width: 640px) {
-      main { padding: 48px 56px; }
+    .skip:focus { top: 12px; }
+    .wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 768px) { .wrap { padding: 0 24px; } }
+
+    /* Header */
+    .site-header { background: var(--card); border-bottom: 1px solid var(--border); }
+    .site-header .wrap {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 8px 24px; padding-top: 12px; padding-bottom: 12px;
     }
-    h1 { font-size: 1.9rem; line-height: 1.25; margin: 0 0 8px; }
-    h2 {
-      font-size: 1.2rem;
-      margin: 36px 0 12px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
+    .brand {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--fg); text-decoration: none; font-weight: 700; font-size: 1.125rem; letter-spacing: -0.01em;
+      min-height: 44px;
     }
-    p, li { margin: 0 0 12px; }
-    ul { padding-left: 22px; margin: 0 0 12px; }
-    .meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 24px; }
-    .summary {
-      background: var(--note);
-      border-radius: 10px;
-      padding: 18px 20px;
-      margin: 24px 0 8px;
+    .brand-mark {
+      display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px;
+      background: var(--primary); color: var(--on-primary);
     }
-    .summary p { margin: 0 0 6px; }
-    .summary ul { margin: 0; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
-    .table-wrap { overflow-x: auto; margin: 0 0 12px; }
-    th, td {
-      text-align: left;
-      vertical-align: top;
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--border);
+    .brand small { font-weight: 500; font-size: 0.8125rem; color: var(--muted-fg); }
+    .site-nav { margin-left: -7px; }
+    .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 2px; }
+    @media (min-width: 720px) { .site-nav { margin-left: 0; } }
+    .site-nav a {
+      display: inline-flex; align-items: center; min-height: 44px; padding: 0 7px;
+      color: var(--muted-fg); text-decoration: none; font-weight: 500; font-size: 0.875rem;
+      border-radius: 8px; transition: color .15s ease, background-color .15s ease;
     }
-    th { color: var(--muted); font-weight: 600; }
-    a { color: var(--accent); }
-    footer { color: var(--muted); font-size: 0.9rem; margin-top: 40px; }
+    .site-nav a:hover { color: var(--fg); background: var(--muted); }
+    @media (min-width: 480px) { .site-nav a { padding: 0 10px; font-size: 0.9375rem; } }
+    .site-nav a[aria-current="page"] { color: var(--primary); box-shadow: inset 0 -2px 0 var(--primary); border-radius: 0; }
+
+    /* Typography */
+    h1, h2, h3 { line-height: 1.25; letter-spacing: -0.015em; margin: 0; }
+    h1 { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem); font-weight: 600; }
+    h3 { font-size: 1.0625rem; font-weight: 600; }
+    p { margin: 0 0 14px; }
+    ul, ol { margin: 0 0 14px; padding-left: 22px; }
+    li { margin: 0 0 6px; }
+    strong { font-weight: 600; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; margin: 0 0 12px;
+      font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-fg);
+    }
+    .eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--accent); }
+    .lead { font-size: 1.125rem; color: var(--muted-fg); max-width: 60ch; }
+    .tnum { font-variant-numeric: tabular-nums; }
+
+    /* Legal document layout */
+    .doc-head { padding: 40px 0 28px; border-bottom: 1px solid var(--border); background: var(--card); }
+    .doc-head h1 { max-width: 24ch; margin-bottom: 12px; }
+    .meta { display: grid; gap: 4px 24px; margin: 16px 0 0; padding: 0; font-size: 0.9375rem; color: var(--muted-fg); font-variant-numeric: tabular-nums; }
+    .meta div { display: flex; flex-wrap: wrap; gap: 0 6px; }
+    .meta dt { font-weight: 600; color: var(--fg); }
+    .meta dd { margin: 0; }
+    @media (min-width: 640px) { .meta { grid-template-columns: repeat(2, minmax(0, max-content)); } }
+    .doc { padding-top: 32px; padding-bottom: 56px; }
+    .prose { max-width: var(--measure); }
+    .prose > section { padding-top: 32px; margin-top: 32px; border-top: 1px solid var(--border); scroll-margin-top: 16px; }
+    .prose > section:first-of-type { border-top: 0; margin-top: 0; }
+    .prose h2 { margin-bottom: 14px; display: flex; gap: 12px; align-items: baseline; }
+    .prose h2 .num { color: var(--accent); font-variant-numeric: tabular-nums; font-weight: 600; min-width: 1.5em; }
+    .prose h3 { margin: 22px 0 8px; }
+
+    .callout {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: var(--primary-soft); border: 1px solid var(--border); border-left: 3px solid var(--primary);
+      border-radius: var(--radius); padding: 18px 18px; margin: 0 0 24px;
+    }
+    .callout .ico { color: var(--primary); margin-top: 3px; }
+    .callout.warn { background: var(--accent-soft); border-left-color: var(--accent); }
+    .callout.warn .ico { color: var(--accent); }
+    .callout > div > :last-child { margin-bottom: 0; }
+    .callout ul { margin-bottom: 0; }
+
+    .toc { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin: 0 0 8px; }
+    .toc h2 { font-size: 1rem; margin: 0 0 10px; }
+    .toc ol { margin: 0; padding-left: 0; list-style: none; columns: 1; column-gap: 24px; counter-reset: toc; }
+    @media (min-width: 640px) { .toc ol { columns: 2; } }
+    .toc li { break-inside: avoid; margin: 0; counter-increment: toc; }
+    .toc a { display: flex; gap: 8px; padding: 6px 0; text-decoration: none; color: var(--fg); min-height: 36px; align-items: center; }
+    .toc a::before { content: counter(toc) "."; color: var(--muted-fg); font-variant-numeric: tabular-nums; min-width: 1.75em; }
+    .toc a:hover { color: var(--primary); text-decoration: underline; }
+
+    .table-wrap { overflow-x: auto; margin: 0 0 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); -webkit-overflow-scrolling: touch; }
+    table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.9375rem; }
+    caption { text-align: left; padding: 12px 14px 0; color: var(--muted-fg); font-size: 0.875rem; }
+    th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+    tbody tr:last-child td { border-bottom: 0; }
+    th { font-weight: 600; color: var(--muted-fg); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.04em; background: var(--muted); }
+    td:first-child { font-weight: 600; }
+
+    .steps { list-style: none; padding: 0; counter-reset: step; }
+    .steps > li { position: relative; padding: 0 0 18px 48px; counter-increment: step; margin: 0; }
+    .steps > li::before {
+      content: counter(step); position: absolute; left: 0; top: 0;
+      width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+      border: 1.5px solid var(--primary); color: var(--primary); font-weight: 600; font-variant-numeric: tabular-nums; font-size: 0.9375rem;
+    }
+    .steps > li > strong:first-child { display: block; }
+
+    .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .contact-card p { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; }
+    .contact-card p:last-child { margin-bottom: 0; }
+    .contact-card .ico { color: var(--muted-fg); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 48px; padding: 0 20px; border-radius: 10px; font-weight: 600; font-size: 1rem;
+      text-decoration: none; border: 1px solid transparent; transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
+    }
+    .btn-primary { background: var(--primary); color: var(--on-primary); }
+    .btn-primary:hover { filter: brightness(1.08); }
+    .btn-secondary { background: var(--card); color: var(--fg); border-color: var(--border); }
+    .btn-secondary:hover { background: var(--muted); }
+    .btn:active { transform: scale(0.98); }
+
+    /* Footer */
+    .site-footer { border-top: 1px solid var(--border); background: var(--card); color: var(--muted-fg); font-size: 0.9375rem; }
+    .site-footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center; padding-top: 24px; padding-bottom: 24px; }
+    .site-footer p { margin: 0; }
+    .site-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 16px; }
+    .site-footer li { margin: 0; }
+    .site-footer a { color: var(--muted-fg); display: inline-flex; min-height: 44px; align-items: center; }
+    .site-footer a:hover { color: var(--fg); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+    @media print {
+      .site-header, .site-footer, .skip, .toc { display: none; }
+      body { background: #fff; color: #000; }
+    }
   </style>
 </head>
 <body>
-<main>
-  <h1>Política de Privacidad de AdminPlus</h1>
-  <p class="meta">
-    <strong>Fecha de entrada en vigor:</strong> 18 de septiembre de 2026<br>
-    <strong>Aplicación:</strong> AdminPlus (com.totolab.myapplottery)<br>
-    <strong>Desarrollador:</strong> TotoLab, Managua, Nicaragua
-  </p>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="AdminPlus, inicio">
+        <span class="brand-mark" aria-hidden="true"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg></span>
+        <span>AdminPlus <small>por TotoLab</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Principal">
+        <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="privacy-policy.html" aria-current="page">Privacidad</a></li>
+        <li><a href="terminos_y_descripcion.html">Términos</a></li>
+        <li><a href="eliminar-datos.html">Eliminar datos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="contenido">
+    <div class="doc-head">
+      <div class="wrap">
+        <p class="eyebrow">Documento legal</p>
+        <h1>Política de Privacidad de AdminPlus</h1>
+        <dl class="meta">
+          <div><dt>Entrada en vigor:</dt><dd>4 de octubre de 2026</dd></div>
+          <div><dt>Versión de la app:</dt><dd>2.0</dd></div>
+          <div><dt>Paquete:</dt><dd>com.totolab.myapplottery</dd></div>
+          <div><dt>Desarrollador:</dt><dd>TotoLab, Managua, Nicaragua</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="wrap doc">
+      <article class="prose">
+        <p>Esta política explica qué información maneja la aplicación AdminPlus, cómo se usa y qué control tiene quien la usa. Aplica a la aplicación para Android distribuida en Google Play.</p>
 
-  <p>Esta política explica qué información maneja la aplicación AdminPlus, cómo se usa y qué control tiene quien la usa. Aplica a la aplicación para Android distribuida en Google Play.</p>
+        <div class="callout" role="note">
+          <svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+          <div>
+            <p><strong>En resumen</strong></p>
+            <ul>
+              <li>AdminPlus <strong>no recopila ni envía datos</strong> a TotoLab ni a ningún servidor.</li>
+              <li>Toda la información del negocio se guarda <strong>únicamente en el dispositivo</strong> y la app funciona sin conexión.</li>
+              <li>No hay cuentas de usuario, publicidad, analíticas, rastreo ni componentes de terceros que recolecten datos.</li>
+              <li>La información solo sale del dispositivo cuando el usuario decide compartir una factura o recibo, enviar un recordatorio de cobro o exportar un respaldo.</li>
+              <li>El usuario puede borrar sus datos en cualquier momento desde la app o desde Android.</li>
+            </ul>
+          </div>
+        </div>
 
-  <div class="summary">
-    <p><strong>En resumen:</strong></p>
-    <ul>
-      <li>AdminPlus <strong>no recopila ni envía datos</strong> a TotoLab ni a ningún servidor.</li>
-      <li>Toda la información que se registra se guarda <strong>únicamente en el dispositivo</strong>.</li>
-      <li>No hay cuentas de usuario, publicidad, analíticas ni rastreo.</li>
-      <li>La información solo sale del dispositivo cuando el usuario decide compartir un ticket.</li>
-    </ul>
-  </div>
+        <nav class="toc" aria-labelledby="toc-title">
+          <h2 id="toc-title">Contenido</h2>
+          <ol>
+            <li><a href="#responsable">Responsable</a></li>
+            <li><a href="#alcance">Alcance</a></li>
+            <li><a href="#informacion">Información que se guarda en el dispositivo</a></li>
+            <li><a href="#no-recopila">Información que no se recopila</a></li>
+            <li><a href="#permisos">Permisos del dispositivo</a></li>
+            <li><a href="#compartir">Cuándo sale la información del dispositivo</a></li>
+            <li><a href="#terceros">Datos de terceros</a></li>
+            <li><a href="#conservacion">Conservación y eliminación</a></li>
+            <li><a href="#seguridad">Seguridad</a></li>
+            <li><a href="#menores">Menores de edad</a></li>
+            <li><a href="#futuro">Funciones futuras opcionales</a></li>
+            <li><a href="#cambios">Cambios en esta política</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ol>
+        </nav>
 
-  <h2>1. Responsable</h2>
-  <p>El responsable de la aplicación es <strong>TotoLab</strong>, con sede en Managua, Nicaragua. Los datos de contacto figuran en la sección 10.</p>
+        <section id="responsable">
+          <h2><span class="num">1.</span> Responsable</h2>
+          <p>El responsable de la aplicación es <strong>TotoLab</strong>, con sede en Managua, Nicaragua. Los datos de contacto figuran en la <a href="#contacto">sección 13</a>.</p>
+        </section>
 
-  <h2>2. Información que se guarda en el dispositivo</h2>
-  <p>AdminPlus es una herramienta administrativa que funciona sin conexión. Para operar, guarda en una base de datos local del propio dispositivo la información que el usuario registra:</p>
-  <ul>
-    <li><strong>Datos del vendedor:</strong> nombre, teléfono, correo electrónico, dirección y precio del ticket, ingresados por el usuario.</li>
-    <li><strong>Datos de clientes:</strong> nombre, teléfono, correo electrónico y dirección de las personas que el usuario decide registrar. Todos los campos son opcionales salvo el nombre.</li>
-    <li><strong>Registros de ventas:</strong> tickets, números vendidos, importes, fechas y tipos de sorteo.</li>
-    <li><strong>Preferencias:</strong> el tema visual elegido (claro u oscuro) y la impresora Bluetooth seleccionada.</li>
-  </ul>
-  <p>TotoLab <strong>no tiene acceso</strong> a esta información: no se transmite, no se sincroniza y no se almacena en servidores externos.</p>
+        <section id="alcance">
+          <h2><span class="num">2.</span> Alcance</h2>
+          <p>AdminPlus es una herramienta de gestión para pequeños negocios: clientes, inventario, facturación y ventas, cobros, finanzas, reportes, escáner de códigos y respaldo. Esta política cubre la versión 2.0 y posteriores mientras no sea reemplazada por una versión más reciente publicada en esta misma dirección.</p>
+        </section>
 
-  <h2>3. Permisos del dispositivo</h2>
-  <p>La aplicación solicita los siguientes permisos, cada uno para una función concreta:</p>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>Permiso</th><th>Para qué se usa</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Bluetooth (buscar y conectar dispositivos)</td>
-          <td>Encontrar y conectarse a la impresora térmica para imprimir tickets.</td>
-        </tr>
-        <tr>
-          <td>Ubicación</td>
-          <td>Android exige este permiso para buscar dispositivos Bluetooth cercanos. AdminPlus <strong>no lee, no guarda y no envía</strong> la ubicación del dispositivo.</td>
-        </tr>
-        <tr>
-          <td>Almacenamiento (solo Android 12 y anteriores)</td>
-          <td>Generar la imagen de un ticket para compartirla.</td>
-        </tr>
-        <tr>
-          <td>Acceso a internet y estado de la red</td>
-          <td>Mostrar un aviso cuando el dispositivo está sin conexión y abrir enlaces externos, como esta política. La aplicación no envía datos a través de internet.</td>
-        </tr>
-        <tr>
-          <td>Vibración</td>
-          <td>Dar respuesta táctil al usar la aplicación.</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+        <section id="informacion">
+          <h2><span class="num">3.</span> Información que se guarda en el dispositivo</h2>
+          <p>Para funcionar, AdminPlus guarda en una base de datos local (SQLite) dentro del almacenamiento privado del dispositivo la información que el usuario registra:</p>
+          <ul>
+            <li><strong>Datos del negocio:</strong> nombre, teléfono, dirección, tasa de impuesto y demás datos que el usuario configure para sus facturas y recibos.</li>
+            <li><strong>Clientes:</strong> nombre, teléfono, correo electrónico, dirección y notas de las personas que el usuario decide registrar, junto con su historial de compras y saldo pendiente. Todos los campos son opcionales salvo el nombre.</li>
+            <li><strong>Inventario:</strong> productos, categorías, SKU, códigos de barras, costos, precios, existencias y movimientos de entrada, salida y ajuste. Si el usuario lo desea, una foto de cada producto.</li>
+            <li><strong>Ventas y facturación:</strong> facturas, recibos, productos vendidos, descuentos, impuestos, importes, fechas y método de pago (efectivo, tarjeta, transferencia o crédito). AdminPlus solo registra el método de pago: no procesa pagos ni guarda números de tarjeta.</li>
+            <li><strong>Cobros:</strong> cuentas por cobrar, abonos y fechas de vencimiento.</li>
+            <li><strong>Finanzas:</strong> ingresos, gastos y sus categorías, y registros de apertura y cierre de caja.</li>
+            <li><strong>Preferencias:</strong> el tema visual elegido y la impresora Bluetooth seleccionada.</li>
+          </ul>
+          <p>TotoLab <strong>no tiene acceso</strong> a esta información: no se transmite, no se sincroniza y no se almacena en servidores externos.</p>
+        </section>
 
-  <h2>4. Cómo se comparte la información</h2>
-  <p>TotoLab <strong>no vende, no alquila y no comparte</strong> información con terceros.</p>
-  <p>La única forma en que la información sale del dispositivo es cuando el usuario elige compartir un ticket. En ese caso, la aplicación genera una imagen del ticket y abre el menú de compartir de Android; el usuario decide con qué aplicación y con quién la comparte. A partir de ese momento, la imagen queda sujeta a las políticas de la aplicación elegida.</p>
+        <section id="no-recopila">
+          <h2><span class="num">4.</span> Información que no se recopila</h2>
+          <p>AdminPlus no recopila, ni para TotoLab ni para terceros:</p>
+          <ul>
+            <li>Datos de cuenta, contraseñas o identificadores de usuario (la app no tiene inicio de sesión).</li>
+            <li>Ubicación del dispositivo.</li>
+            <li>Contactos, mensajes, historial de llamadas ni archivos personales.</li>
+            <li>Identificadores de publicidad, estadísticas de uso, informes de fallos ni datos de rastreo.</li>
+          </ul>
+          <p>La app no incluye publicidad ni kits de desarrollo (SDK) de terceros que recolecten datos.</p>
+        </section>
 
-  <h2>5. Datos de terceros</h2>
-  <p>Al registrar datos de clientes, el usuario de AdminPlus actúa como responsable de esa información. Le corresponde contar con el consentimiento de las personas registradas y usar sus datos conforme a la ley aplicable.</p>
+        <section id="permisos">
+          <h2><span class="num">5.</span> Permisos del dispositivo</h2>
+          <p>AdminPlus solicita los siguientes permisos, cada uno para una función concreta. Los permisos de cámara y Bluetooth se piden solo cuando el usuario usa la función que los necesita, y pueden revocarse en cualquier momento desde los ajustes de Android.</p>
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de permisos">
+            <table>
+              <thead>
+                <tr><th scope="col">Permiso</th><th scope="col">Para qué se usa</th><th scope="col">Qué no hace</th></tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Cámara</td>
+                <td>Escanear códigos de barras y QR para buscar, vender y contar productos. Tomar, si usted lo desea, una foto de un producto.</td>
+                <td>Las imágenes del escáner se procesan en el momento y no se guardan ni se envían. Las fotos de productos se guardan solo en el almacenamiento privado de la app.</td>
+              </tr>
+              <tr>
+                <td>Bluetooth (buscar y conectar dispositivos)</td>
+                <td>Encontrar y conectarse a la impresora térmica para imprimir facturas y recibos.</td>
+                <td>No se usa para rastrear ni identificar otros dispositivos.</td>
+              </tr>
+              <tr>
+                <td>Ubicación (solo Android 11 o anterior)</td>
+                <td>Android exige este permiso en esas versiones para poder buscar dispositivos Bluetooth cercanos.</td>
+                <td>AdminPlus no lee, no guarda y no envía la ubicación del dispositivo. En Android 12 o posterior no se solicita.</td>
+              </tr>
+              <tr>
+                <td>Acceso a internet y estado de la red</td>
+                <td>Mostrar un aviso cuando el dispositivo está sin conexión y abrir enlaces externos, como esta política.</td>
+                <td>La app no envía la información de su negocio a través de internet.</td>
+              </tr>
+              <tr>
+                <td>Vibración</td>
+                <td>Dar respuesta táctil al pulsar botones o al leer un código.</td>
+                <td>No accede a ningún dato.</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>A partir de la versión 2.0, AdminPlus <strong>ya no solicita</strong> el permiso de almacenamiento externo ni el permiso para mostrarse sobre otras aplicaciones.</p>
+        </section>
 
-  <h2>6. Conservación y eliminación</h2>
-  <p>La información permanece en el dispositivo hasta que el usuario la elimina. Puede borrarse de estas formas:</p>
-  <ul>
-    <li>Eliminando clientes o tipos de sorteo desde la propia aplicación.</li>
-    <li>Restableciendo la base de datos desde <em>Ajustes del Vendedor</em>, lo que borra toda la información registrada.</li>
-    <li>Borrando los datos de la aplicación desde los ajustes de Android.</li>
-    <li>Desinstalando la aplicación, lo que elimina toda la información guardada.</li>
-  </ul>
-  <p>Como TotoLab no conserva copias, una vez eliminada la información no puede recuperarse.</p>
+        <section id="compartir">
+          <h2><span class="num">6.</span> Cuándo sale la información del dispositivo</h2>
+          <p>TotoLab <strong>no vende, no alquila y no comparte</strong> información con terceros. La información solo sale del dispositivo cuando el usuario lo decide, en estos casos:</p>
+          <ul>
+            <li><strong>Compartir una factura o recibo:</strong> la app genera un PDF o una imagen y abre el menú de compartir de Android.</li>
+            <li><strong>Enviar un recordatorio de cobro:</strong> la app prepara el mensaje y lo abre en WhatsApp o en otra aplicación elegida por el usuario, quien revisa y envía el mensaje manualmente. AdminPlus no envía mensajes de forma automática.</li>
+            <li><strong>Exportar un respaldo:</strong> la app crea un archivo con la información del negocio y el usuario elige dónde guardarlo (por ejemplo, en el almacenamiento del teléfono o en un servicio de su preferencia).</li>
+            <li><strong>Imprimir:</strong> los datos de la factura o recibo se envían por Bluetooth a la impresora térmica que el usuario conectó.</li>
+          </ul>
+          <p>En todos los casos, el usuario decide con qué aplicación, servicio o persona comparte la información. A partir de ese momento, queda sujeta a las políticas de esa aplicación o servicio. Se recomienda guardar los archivos de respaldo en un lugar seguro, ya que contienen toda la información del negocio, incluidos los datos de clientes.</p>
+        </section>
 
-  <h2>7. Seguridad</h2>
-  <p>La información se guarda en el almacenamiento privado de la aplicación, al que Android impide el acceso de otras aplicaciones. Se recomienda proteger el dispositivo con bloqueo de pantalla, ya que cualquier persona con acceso al teléfono desbloqueado puede ver la información registrada.</p>
+        <section id="terceros">
+          <h2><span class="num">7.</span> Datos de terceros</h2>
+          <p>Al registrar datos de clientes, el usuario de AdminPlus actúa como responsable de esa información. Le corresponde informar a sus clientes, contar con su consentimiento cuando la ley lo exija y usar sus datos conforme a la legislación aplicable, incluida la Ley n.º 787 de Protección de Datos Personales de Nicaragua.</p>
+        </section>
 
-  <h2>8. Menores de edad</h2>
-  <p>AdminPlus es una herramienta administrativa dirigida a personas adultas que gestionan actividades de instituciones y organizaciones. No está dirigida a menores de 18 años y no recopila intencionalmente información de menores.</p>
+        <section id="conservacion">
+          <h2><span class="num">8.</span> Conservación y eliminación</h2>
+          <p>La información permanece en el dispositivo hasta que el usuario la elimina. Puede borrarse de estas formas:</p>
+          <ul>
+            <li>Eliminando registros individuales (clientes, productos, ventas, gastos u otros) desde la propia aplicación.</li>
+            <li>Usando <em>Ajustes &gt; Restablecer datos</em> dentro de AdminPlus, lo que borra toda la información registrada.</li>
+            <li>Borrando los datos de la aplicación desde los ajustes de Android.</li>
+            <li>Desinstalando la aplicación, lo que elimina toda la información guardada en ella.</li>
+          </ul>
+          <p>Los archivos de respaldo exportados y los documentos compartidos quedan fuera de la app y deben eliminarse por separado. Como TotoLab no conserva copias en servidores, una vez eliminada la información no puede recuperarse, salvo que el usuario tenga su propio respaldo. Las instrucciones paso a paso están en <a href="eliminar-datos.html">Eliminar sus datos</a>.</p>
+        </section>
 
-  <h2>9. Cambios en esta política</h2>
-  <p>Si la aplicación cambia la forma en que maneja la información, esta política se actualizará en esta misma dirección y se modificará la fecha de entrada en vigor indicada al inicio.</p>
+        <section id="seguridad">
+          <h2><span class="num">9.</span> Seguridad</h2>
+          <p>La información se guarda en el almacenamiento privado de la aplicación, al que Android impide el acceso de otras aplicaciones. Se recomienda proteger el dispositivo con bloqueo de pantalla, ya que cualquier persona con acceso al teléfono desbloqueado puede ver la información registrada, y mantener los archivos de respaldo en un lugar de confianza.</p>
+        </section>
 
-  <h2>10. Contacto</h2>
-  <p>Para consultas sobre esta política o sobre la privacidad en AdminPlus, escribir a:</p>
-  <p><strong>TotoLab</strong><br>
-    Correo electrónico: <a href="mailto:totolab2025@gmail.com">totolab2025@gmail.com</a><br>
-    Managua, Nicaragua</p>
+        <section id="menores">
+          <h2><span class="num">10.</span> Menores de edad</h2>
+          <p>AdminPlus es una herramienta dirigida a personas adultas que administran negocios. No está dirigida a menores de 18 años y no recopila intencionalmente información de menores.</p>
+        </section>
 
-  <footer>© 2026 TotoLab. AdminPlus es una marca de TotoLab.</footer>
-</main>
+        <section id="futuro">
+          <h2><span class="num">11.</span> Funciones futuras opcionales</h2>
+          <div class="callout" role="note">
+            <svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+            <div>
+              <p>En versiones futuras, TotoLab podría agregar un <strong>inicio de sesión opcional</strong> y un <strong>respaldo en la nube</strong>. Hoy esas funciones no existen.</p>
+              <p>Si se incorporan, serán opcionales, la app seguirá funcionando sin ellas y esta política se actualizará <strong>antes</strong> de activarlas, explicando qué datos se envían, dónde se guardan y cómo eliminarlos.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="cambios">
+          <h2><span class="num">12.</span> Cambios en esta política</h2>
+          <p>Si la aplicación cambia la forma en que maneja la información, esta política se actualizará en esta misma dirección y se modificará la fecha de entrada en vigor indicada al inicio. Los cambios importantes también se indicarán en la descripción de la actualización en Google Play.</p>
+        </section>
+
+        <section id="contacto">
+          <h2><span class="num">13.</span> Contacto</h2>
+          <p>Para consultas sobre esta política o sobre la privacidad en AdminPlus:</p>
+          <div class="contact-card">
+            <p><strong>TotoLab</strong></p>
+            <p><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> <a href="mailto:totolab2025@gmail.com">totolab2025@gmail.com</a></p>
+            <p><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Managua, Nicaragua</p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 TotoLab · Managua, Nicaragua. AdminPlus es una marca de TotoLab.</p>
+      <ul aria-label="Documentos legales">
+        <li><a href="privacy-policy.html">Privacidad</a></li>
+        <li><a href="terminos_y_descripcion.html">Términos</a></li>
+        <li><a href="eliminar-datos.html">Eliminar datos</a></li>
+        <li><a href="mailto:totolab2025@gmail.com">Contacto</a></li>
+      </ul>
+    </div>
+  </footer>
 </body>
 </html>

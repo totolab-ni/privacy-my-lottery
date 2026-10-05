@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Página no encontrada – AdminPlus</title>
+  <meta name="description" content="La página que busca no existe en el sitio de AdminPlus.">
+  <meta name="theme-color" content="#1E3A8A" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_NI">
+  <meta property="og:site_name" content="AdminPlus">
+  <meta property="og:title" content="Página no encontrada – AdminPlus">
+  <meta property="og:description" content="La página que busca no existe en el sitio de AdminPlus.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --primary: #1E3A8A;
+      --on-primary: #FFFFFF;
+      --fg: #0F172A;
+      --accent: #A16207;
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --muted: #E8ECF1;
+      --muted-fg: #475569;
+      --border: #E2E8F0;
+      --success: #15803D;
+      --destructive: #DC2626;
+      --primary-soft: #EEF2FB;
+      --accent-soft: #FBF6EA;
+      --radius: 12px;
+      --measure: 72ch;
+      --font: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #93B4FF;
+        --on-primary: #0B1220;
+        --fg: #E6ECF5;
+        --accent: #E3B341;
+        --bg: #0B1220;
+        --card: #111A2E;
+        --muted: #18233A;
+        --muted-fg: #A3B1C6;
+        --border: #22304A;
+        --success: #4ADE80;
+        --destructive: #F87171;
+        --primary-soft: #142140;
+        --accent-soft: #261F10;
+      }
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font);
+      font-size: 1rem;
+      line-height: 1.65;
+      overflow-wrap: break-word;
+    }
+    img, svg { display: block; max-width: 100%; }
+    .ico { flex: none; }
+    a { color: var(--primary); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+    .skip {
+      position: absolute; left: 16px; top: -48px; z-index: 10;
+      background: var(--primary); color: var(--on-primary);
+      padding: 8px 14px; border-radius: 8px; font-weight: 600; text-decoration: none;
+    }
+    .skip:focus { top: 12px; }
+    .wrap { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 768px) { .wrap { padding: 0 24px; } }
+
+    /* Header */
+    .site-header { background: var(--card); border-bottom: 1px solid var(--border); }
+    .site-header .wrap {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 8px 24px; padding-top: 12px; padding-bottom: 12px;
+    }
+    .brand {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--fg); text-decoration: none; font-weight: 700; font-size: 1.125rem; letter-spacing: -0.01em;
+      min-height: 44px;
+    }
+    .brand-mark {
+      display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 8px;
+      background: var(--primary); color: var(--on-primary);
+    }
+    .brand small { font-weight: 500; font-size: 0.8125rem; color: var(--muted-fg); }
+    .site-nav { margin-left: -7px; }
+    .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 2px; }
+    @media (min-width: 720px) { .site-nav { margin-left: 0; } }
+    .site-nav a {
+      display: inline-flex; align-items: center; min-height: 44px; padding: 0 7px;
+      color: var(--muted-fg); text-decoration: none; font-weight: 500; font-size: 0.875rem;
+      border-radius: 8px; transition: color .15s ease, background-color .15s ease;
+    }
+    .site-nav a:hover { color: var(--fg); background: var(--muted); }
+    @media (min-width: 480px) { .site-nav a { padding: 0 10px; font-size: 0.9375rem; } }
+    .site-nav a[aria-current="page"] { color: var(--primary); box-shadow: inset 0 -2px 0 var(--primary); border-radius: 0; }
+
+    /* Typography */
+    h1, h2, h3 { line-height: 1.25; letter-spacing: -0.015em; margin: 0; }
+    h1 { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem); font-weight: 600; }
+    h3 { font-size: 1.0625rem; font-weight: 600; }
+    p { margin: 0 0 14px; }
+    ul, ol { margin: 0 0 14px; padding-left: 22px; }
+    li { margin: 0 0 6px; }
+    strong { font-weight: 600; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; margin: 0 0 12px;
+      font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-fg);
+    }
+    .eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--accent); }
+    .lead { font-size: 1.125rem; color: var(--muted-fg); max-width: 60ch; }
+    .tnum { font-variant-numeric: tabular-nums; }
+
+    /* Legal document layout */
+    .doc-head { padding: 40px 0 28px; border-bottom: 1px solid var(--border); background: var(--card); }
+    .doc-head h1 { max-width: 24ch; margin-bottom: 12px; }
+    .meta { display: grid; gap: 4px 24px; margin: 16px 0 0; padding: 0; font-size: 0.9375rem; color: var(--muted-fg); font-variant-numeric: tabular-nums; }
+    .meta div { display: flex; flex-wrap: wrap; gap: 0 6px; }
+    .meta dt { font-weight: 600; color: var(--fg); }
+    .meta dd { margin: 0; }
+    @media (min-width: 640px) { .meta { grid-template-columns: repeat(2, minmax(0, max-content)); } }
+    .doc { padding-top: 32px; padding-bottom: 56px; }
+    .prose { max-width: var(--measure); }
+    .prose > section { padding-top: 32px; margin-top: 32px; border-top: 1px solid var(--border); scroll-margin-top: 16px; }
+    .prose > section:first-of-type { border-top: 0; margin-top: 0; }
+    .prose h2 { margin-bottom: 14px; display: flex; gap: 12px; align-items: baseline; }
+    .prose h2 .num { color: var(--accent); font-variant-numeric: tabular-nums; font-weight: 600; min-width: 1.5em; }
+    .prose h3 { margin: 22px 0 8px; }
+
+    .callout {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: var(--primary-soft); border: 1px solid var(--border); border-left: 3px solid var(--primary);
+      border-radius: var(--radius); padding: 18px 18px; margin: 0 0 24px;
+    }
+    .callout .ico { color: var(--primary); margin-top: 3px; }
+    .callout.warn { background: var(--accent-soft); border-left-color: var(--accent); }
+    .callout.warn .ico { color: var(--accent); }
+    .callout > div > :last-child { margin-bottom: 0; }
+    .callout ul { margin-bottom: 0; }
+
+    .toc { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin: 0 0 8px; }
+    .toc h2 { font-size: 1rem; margin: 0 0 10px; }
+    .toc ol { margin: 0; padding-left: 0; list-style: none; columns: 1; column-gap: 24px; counter-reset: toc; }
+    @media (min-width: 640px) { .toc ol { columns: 2; } }
+    .toc li { break-inside: avoid; margin: 0; counter-increment: toc; }
+    .toc a { display: flex; gap: 8px; padding: 6px 0; text-decoration: none; color: var(--fg); min-height: 36px; align-items: center; }
+    .toc a::before { content: counter(toc) "."; color: var(--muted-fg); font-variant-numeric: tabular-nums; min-width: 1.75em; }
+    .toc a:hover { color: var(--primary); text-decoration: underline; }
+
+    .table-wrap { overflow-x: auto; margin: 0 0 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); -webkit-overflow-scrolling: touch; }
+    table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 0.9375rem; }
+    caption { text-align: left; padding: 12px 14px 0; color: var(--muted-fg); font-size: 0.875rem; }
+    th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+    tbody tr:last-child td { border-bottom: 0; }
+    th { font-weight: 600; color: var(--muted-fg); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.04em; background: var(--muted); }
+    td:first-child { font-weight: 600; }
+
+    .steps { list-style: none; padding: 0; counter-reset: step; }
+    .steps > li { position: relative; padding: 0 0 18px 48px; counter-increment: step; margin: 0; }
+    .steps > li::before {
+      content: counter(step); position: absolute; left: 0; top: 0;
+      width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+      border: 1.5px solid var(--primary); color: var(--primary); font-weight: 600; font-variant-numeric: tabular-nums; font-size: 0.9375rem;
+    }
+    .steps > li > strong:first-child { display: block; }
+
+    .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .contact-card p { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; }
+    .contact-card p:last-child { margin-bottom: 0; }
+    .contact-card .ico { color: var(--muted-fg); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 48px; padding: 0 20px; border-radius: 10px; font-weight: 600; font-size: 1rem;
+      text-decoration: none; border: 1px solid transparent; transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
+    }
+    .btn-primary { background: var(--primary); color: var(--on-primary); }
+    .btn-primary:hover { filter: brightness(1.08); }
+    .btn-secondary { background: var(--card); color: var(--fg); border-color: var(--border); }
+    .btn-secondary:hover { background: var(--muted); }
+    .btn:active { transform: scale(0.98); }
+
+    /* Footer */
+    .site-footer { border-top: 1px solid var(--border); background: var(--card); color: var(--muted-fg); font-size: 0.9375rem; }
+    .site-footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center; padding-top: 24px; padding-bottom: 24px; }
+    .site-footer p { margin: 0; }
+    .site-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0 16px; }
+    .site-footer li { margin: 0; }
+    .site-footer a { color: var(--muted-fg); display: inline-flex; min-height: 44px; align-items: center; }
+    .site-footer a:hover { color: var(--fg); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+    @media print {
+      .site-header, .site-footer, .skip, .toc { display: none; }
+      body { background: #fff; color: #000; }
+    }
+
+    .nf { padding: 72px 0 96px; }
+    .nf-code { font-size: clamp(4rem, 3rem + 6vw, 7rem); font-weight: 700; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; letter-spacing: -0.04em; margin: 0 0 16px; }
+    .nf h1 { margin-bottom: 12px; }
+    .nf .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="AdminPlus, inicio">
+        <span class="brand-mark" aria-hidden="true"><svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg></span>
+        <span>AdminPlus <small>por TotoLab</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Principal">
+        <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="privacy-policy.html">Privacidad</a></li>
+        <li><a href="terminos_y_descripcion.html">Términos</a></li>
+        <li><a href="eliminar-datos.html">Eliminar datos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="contenido">
+    <section class="nf">
+      <div class="wrap">
+        <p class="nf-code" aria-hidden="true">404</p>
+        <h1>Página no encontrada</h1>
+        <p class="lead">La dirección que buscó no existe o cambió de lugar. Estas son las páginas disponibles:</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="index.html">Ir al inicio <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          <a class="btn btn-secondary" href="privacy-policy.html">Política de privacidad</a>
+          <a class="btn btn-secondary" href="terminos_y_descripcion.html">Términos y condiciones</a>
+          <a class="btn btn-secondary" href="eliminar-datos.html">Eliminar datos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 TotoLab · Managua, Nicaragua. AdminPlus es una marca de TotoLab.</p>
+      <ul aria-label="Documentos legales">
+        <li><a href="privacy-policy.html">Privacidad</a></li>
+        <li><a href="terminos_y_descripcion.html">Términos</a></li>
+        <li><a href="eliminar-datos.html">Eliminar datos</a></li>
+        <li><a href="mailto:totolab2025@gmail.com">Contacto</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
