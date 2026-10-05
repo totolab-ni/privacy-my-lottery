@@ -359,7 +359,7 @@ landing_modules_html = "\n".join(
 
 FAQ = [
     ("¿Necesito internet para usar AdminPlus?",
-     "No. Puede vender, cobrar, registrar gastos, imprimir y ver reportes sin conexión. Internet solo se usa para avisarle que está desconectado, abrir enlaces y compartir documentos si usted lo decide."),
+     "No. Puede vender, cobrar, registrar gastos, imprimir y ver reportes sin conexión. Internet solo se usa para abrir enlaces externos, como esta política, y para compartir documentos si usted lo decide."),
     ("¿Dónde se guardan mis datos?",
      "En una base de datos local dentro de su teléfono. TotoLab no tiene acceso a ellos y no hay copias en servidores. Para protegerlos, exporte respaldos con frecuencia y guárdelos en un lugar seguro."),
     ("¿Tengo que crear una cuenta?",
@@ -813,7 +813,7 @@ PERMS = [
      "No se usa para rastrear ni identificar otros dispositivos."),
     ("Ubicación (solo Android 11 o anterior)", "Android exige este permiso en esas versiones para poder buscar dispositivos Bluetooth cercanos.",
      "AdminPlus no lee, no guarda y no envía la ubicación del dispositivo. En Android 12 o posterior no se solicita."),
-    ("Acceso a internet y estado de la red", "Mostrar un aviso cuando el dispositivo está sin conexión y abrir enlaces externos, como esta política.",
+    ("Acceso a internet", "Abrir enlaces externos, como esta política o el correo de soporte.",
      "La app no envía la información de su negocio a través de internet."),
     ("Vibración", "Dar respuesta táctil al pulsar botones o al leer un código.", "No accede a ningún dato."),
 ]
