@@ -361,7 +361,9 @@ landing_modules_html = "\n".join(
 
 FAQ = [
     ("¿Necesito internet para usar AdminPlus?",
-     "No. Puede vender, cobrar, registrar gastos, imprimir y ver reportes sin conexión. Internet solo se usa para abrir enlaces externos, como esta política, y para compartir documentos si usted lo decide."),
+     "No. Puede vender, cobrar, registrar gastos, imprimir y ver reportes sin conexión. Internet se usa para mostrar anuncios, abrir enlaces externos, como esta política, y compartir documentos si usted lo decide. Sin conexión, la app funciona igual y simplemente no muestra anuncios."),
+    ("¿Por qué AdminPlus tiene anuncios?",
+     "Los anuncios permiten que AdminPlus sea gratis. Son breves y discretos: un banner en pantallas de consulta y, muy de vez en cuando, un anuncio corto en una pausa natural, como al cerrar la caja. Nunca aparecen mientras vende, cobra o llena un formulario. Los anuncios los sirve Google AdMob y no tienen acceso a la información de su negocio."),
     ("¿Dónde se guardan mis datos?",
      "En una base de datos local dentro de su teléfono. TotoLab no tiene acceso a ellos y no hay copias en servidores. Para protegerlos, exporte respaldos con frecuencia y guárdelos en un lugar seguro."),
     ("¿Tengo que crear una cuenta?",
@@ -583,7 +585,7 @@ INDEX_BODY = f"""    <section class="hero" aria-labelledby="hero-title">
           </div>
           <ul class="facts" aria-label="Características clave">
             <li>{I("check", 18)} Sin cuentas</li>
-            <li>{I("check", 18)} Sin publicidad</li>
+            <li>{I("check", 18)} Gratis, con anuncios breves</li>
             <li>{I("check", 18)} Funciona sin conexión</li>
           </ul>
         </div>
@@ -641,12 +643,12 @@ INDEX_BODY = f"""    <section class="hero" aria-labelledby="hero-title">
         <div class="offline-statement">
           <p class="eyebrow">Sin internet, sin nube</p>
           <h2 id="privacidad-title">Funciona sin internet. Sus datos se quedan en su teléfono.</h2>
-          <p>AdminPlus guarda la información en una base de datos local del dispositivo. TotoLab no la ve, no la copia y no la vende. Usted decide cuándo algo sale del teléfono.</p>
+          <p>AdminPlus guarda la información en una base de datos local del dispositivo. TotoLab no la ve, no la copia y no la vende. Usted decide cuándo algo sale del teléfono. Los anuncios usan internet, pero no tienen acceso a sus clientes, ventas ni inventario.</p>
           <p><a href="privacy-policy.html">Leer la política de privacidad</a></p>
         </div>
         <div class="privacy-grid">
           <div class="p-item">{I("wifi-off", 22)}<div><h3>Venda sin señal</h3><p>Vender, cobrar, imprimir y ver reportes no requiere conexión.</p></div></div>
-          <div class="p-item">{I("eye-off", 22)}<div><h3>Sin rastreo ni anuncios</h3><p>Sin cuentas, publicidad, analíticas ni SDK de terceros que recolecten datos.</p></div></div>
+          <div class="p-item">{I("eye-off", 22)}<div><h3>Anuncios que no estorban</h3><p>AdminPlus es gratis gracias a anuncios breves de Google AdMob, que nunca aparecen mientras vende o cobra y no ven los datos de su negocio.</p></div></div>
           <div class="p-item">{I("share", 22)}<div><h3>Usted decide qué sale</h3><p>Solo cuando comparte una factura, envía un recordatorio o exporta un respaldo.</p></div></div>
           <div class="p-item">{I("archive", 22)}<div><h3>Respaldo en sus manos</h3><p>Exporte un archivo con toda la información e impórtelo en otro teléfono.</p></div></div>
         </div>
@@ -780,6 +782,7 @@ PRIV_SECTIONS = [
     ("no-recopila", "Información que no se recopila"),
     ("permisos", "Permisos del dispositivo"),
     ("compartir", "Cuándo sale la información del dispositivo"),
+    ("publicidad", "Publicidad (Google AdMob)"),
     ("terceros", "Datos de terceros"),
     ("conservacion", "Conservación y eliminación"),
     ("seguridad", "Seguridad"),
@@ -815,8 +818,10 @@ PERMS = [
      "No se usa para rastrear ni identificar otros dispositivos."),
     ("Ubicación (solo Android 11 o anterior)", "Android exige este permiso en esas versiones para poder buscar dispositivos Bluetooth cercanos.",
      "AdminPlus no lee, no guarda y no envía la ubicación del dispositivo. En Android 12 o posterior no se solicita."),
-    ("Acceso a internet", "Abrir enlaces externos, como esta política o el correo de soporte.",
+    ("Acceso a internet y estado de la red", "Mostrar anuncios y abrir enlaces externos, como esta política o el correo de soporte.",
      "La app no envía la información de su negocio a través de internet."),
+    ("ID de publicidad (AD_ID)", "Permite al SDK de Google AdMob mostrar y medir anuncios, y personalizarlos si usted lo consiente.",
+     "No da acceso a ningún dato de su negocio. Puede restablecer o eliminar el ID de publicidad desde los ajustes de Android."),
     ("Vibración", "Dar respuesta táctil al pulsar botones o al leer un código.", "No accede a ningún dato."),
 ]
 perm_rows = "\n".join(
@@ -847,9 +852,9 @@ PRIV_BODY = f"""    <div class="doc-head">
           <div>
             <p><strong>En resumen</strong></p>
             <ul>
-              <li>AdminPlus <strong>no recopila ni envía datos</strong> a TotoLab ni a ningún servidor.</li>
-              <li>Toda la información del negocio se guarda <strong>únicamente en el dispositivo</strong> y la app funciona sin conexión.</li>
-              <li>No hay cuentas de usuario, publicidad, analíticas, rastreo ni componentes de terceros que recolecten datos.</li>
+              <li>La información de su negocio (clientes, inventario, ventas, cobros, finanzas) se guarda <strong>únicamente en el dispositivo</strong>: TotoLab no la recibe y la app funciona sin conexión.</li>
+              <li>AdminPlus es gratuita y <strong>muestra anuncios de Google AdMob</strong>. El SDK de anuncios de Google recopila ciertos datos del dispositivo, como el ID de publicidad, para mostrar y medir anuncios (ver <a href="#publicidad">sección 7</a>). Esos datos no incluyen la información de su negocio.</li>
+              <li>No hay cuentas de usuario ni analíticas propias de TotoLab.</li>
               <li>La información solo sale del dispositivo cuando el usuario decide compartir una factura o recibo, enviar un recordatorio de cobro o exportar un respaldo.</li>
               <li>El usuario puede borrar sus datos en cualquier momento desde la app o desde Android.</li>
             </ul>
@@ -860,7 +865,7 @@ PRIV_BODY = f"""    <div class="doc-head">
 
         <section id="responsable">
           {P("responsable")}
-          <p>El responsable de la aplicación es <strong>TotoLab</strong>, con sede en Managua, Nicaragua. Los datos de contacto figuran en la <a href="#contacto">sección 13</a>.</p>
+          <p>El responsable de la aplicación es <strong>TotoLab</strong>, con sede en Managua, Nicaragua. Los datos de contacto figuran en la <a href="#contacto">sección 14</a>.</p>
         </section>
 
         <section id="alcance">
@@ -885,14 +890,14 @@ PRIV_BODY = f"""    <div class="doc-head">
 
         <section id="no-recopila">
           {P("no-recopila")}
-          <p>AdminPlus no recopila, ni para TotoLab ni para terceros:</p>
+          <p>TotoLab no recopila, ni para sí ni para terceros:</p>
           <ul>
             <li>Datos de cuenta, contraseñas o identificadores de usuario (la app no tiene inicio de sesión).</li>
-            <li>Ubicación del dispositivo.</li>
+            <li>La información de su negocio: clientes, productos, ventas, cobros, gastos ni respaldos.</li>
+            <li>La ubicación precisa del dispositivo.</li>
             <li>Contactos, mensajes, historial de llamadas ni archivos personales.</li>
-            <li>Identificadores de publicidad, estadísticas de uso, informes de fallos ni datos de rastreo.</li>
           </ul>
-          <p>La app no incluye publicidad ni kits de desarrollo (SDK) de terceros que recolecten datos.</p>
+          <p>El único componente de terceros que recopila datos es el SDK de anuncios de Google (AdMob), descrito en la <a href="#publicidad">sección 7</a>.</p>
         </section>
 
         <section id="permisos">
@@ -913,7 +918,7 @@ PRIV_BODY = f"""    <div class="doc-head">
 
         <section id="compartir">
           {P("compartir")}
-          <p>TotoLab <strong>no vende, no alquila y no comparte</strong> información con terceros. La información solo sale del dispositivo cuando el usuario lo decide, en estos casos:</p>
+          <p>TotoLab <strong>no vende, no alquila y no comparte</strong> la información de su negocio con terceros. Esa información solo sale del dispositivo cuando el usuario lo decide, en estos casos (los datos que recopila el SDK de anuncios se explican en la sección siguiente):</p>
           <ul>
             <li><strong>Compartir una factura o recibo:</strong> la app genera un PDF o una imagen y abre el menú de compartir de Android.</li>
             <li><strong>Enviar un recordatorio de cobro:</strong> la app prepara el mensaje y lo abre en WhatsApp o en otra aplicación elegida por el usuario, quien revisa y envía el mensaje manualmente. AdminPlus no envía mensajes de forma automática.</li>
@@ -921,6 +926,24 @@ PRIV_BODY = f"""    <div class="doc-head">
             <li><strong>Imprimir:</strong> los datos de la factura o recibo se envían por Bluetooth a la impresora térmica que el usuario conectó.</li>
           </ul>
           <p>En todos los casos, el usuario decide con qué aplicación, servicio o persona comparte la información. A partir de ese momento, queda sujeta a las políticas de esa aplicación o servicio. Se recomienda guardar los archivos de respaldo en un lugar seguro, ya que contienen toda la información del negocio, incluidos los datos de clientes.</p>
+        </section>
+
+        <section id="publicidad">
+          {P("publicidad")}
+          <p>AdminPlus es gratuita y se financia con anuncios servidos por <strong>Google AdMob</strong>. Los anuncios son breves y discretos: un banner en pantallas de consulta y, ocasionalmente, un anuncio corto en pausas naturales. No aparecen mientras se vende, se cobra o se completa un formulario. Sin conexión a internet no se muestran anuncios.</p>
+          <p>Para mostrar anuncios, el SDK de Google Mobile Ads incluido en la app puede recopilar y enviar a Google, de forma automática:</p>
+          <ul>
+            <li>El <strong>ID de publicidad</strong> de Android y otros identificadores del dispositivo.</li>
+            <li>La <strong>dirección IP</strong>, de la que puede deducirse una ubicación aproximada.</li>
+            <li>Información técnica del dispositivo (modelo, versión de Android, idioma) y datos de <strong>interacción con los anuncios</strong> (impresiones, toques).</li>
+            <li>Datos de diagnóstico y rendimiento del SDK.</li>
+          </ul>
+          <p>Google usa estos datos para mostrar anuncios, medir su rendimiento, prevenir fraudes y, si usted lo consiente, personalizarlos. El SDK de anuncios <strong>no tiene acceso</strong> a la información de su negocio. El tratamiento de estos datos se rige por la <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Política de Privacidad de Google</a> y por <a href="https://policies.google.com/technologies/partner-sites" rel="noopener" target="_blank">cómo usa Google la información de los sitios y aplicaciones que usan sus servicios</a>.</p>
+          <p><strong>Sus opciones:</strong></p>
+          <ul>
+            <li>Cuando la ley lo exige (por ejemplo, en la Unión Europea), la app le pide su consentimiento antes de mostrar anuncios personalizados. Puede cambiar su elección en <em>Ajustes &gt; Preferencias de anuncios</em> dentro de AdminPlus.</li>
+            <li>Puede restablecer o eliminar el ID de publicidad, o desactivar la personalización, en los ajustes de Android (<em>Privacidad &gt; Anuncios</em> o <em>Google &gt; Anuncios</em>, según el dispositivo).</li>
+          </ul>
         </section>
 
         <section id="terceros">
@@ -955,7 +978,7 @@ PRIV_BODY = f"""    <div class="doc-head">
           <div class="callout" role="note">
             {I("cloud", 22)}
             <div>
-              <p>En versiones futuras, TotoLab podría agregar un <strong>inicio de sesión opcional</strong> y un <strong>respaldo en la nube</strong>. Hoy esas funciones no existen.</p>
+              <p>En versiones futuras, TotoLab podría agregar un <strong>inicio de sesión opcional</strong>, un <strong>respaldo en la nube</strong> y una <strong>versión de pago sin anuncios</strong>. Hoy esas funciones no existen.</p>
               <p>Si se incorporan, serán opcionales, la app seguirá funcionando sin ellas y esta política se actualizará <strong>antes</strong> de activarlas, explicando qué datos se envían, dónde se guardan y cómo eliminarlos.</p>
             </div>
           </div>
@@ -1094,7 +1117,7 @@ TERMS_BODY = f"""    <div class="doc-head">
 
         <section id="terceros">
           {T("terceros")}
-          <p>AdminPlus puede interactuar con aplicaciones y dispositivos de terceros elegidos por el usuario, como WhatsApp, el menú de compartir de Android, servicios de almacenamiento o impresoras térmicas. TotoLab no controla esos productos y no responde por su funcionamiento, disponibilidad ni por el tratamiento que hagan de la información compartida a través de ellos.</p>
+          <p>AdminPlus muestra anuncios de terceros servidos por Google AdMob; TotoLab no controla el contenido de cada anuncio ni los productos anunciados, y la interacción con un anuncio queda sujeta a las condiciones del anunciante y de Google. AdminPlus también puede interactuar con aplicaciones y dispositivos de terceros elegidos por el usuario, como WhatsApp, el menú de compartir de Android, servicios de almacenamiento o impresoras térmicas. TotoLab no controla esos productos y no responde por su funcionamiento, disponibilidad ni por el tratamiento que hagan de la información compartida a través de ellos.</p>
         </section>
 
         <section id="propiedad">
@@ -1193,6 +1216,7 @@ DEL_BODY = f"""    <div class="doc-head">
             <li><strong>Archivos de respaldo exportados:</strong> elimínelos de la carpeta o servicio donde los guardó.</li>
             <li><strong>Facturas, recibos o recordatorios compartidos:</strong> quedan en las aplicaciones o conversaciones a las que los envió (por ejemplo, WhatsApp) y deben borrarse allí.</li>
           </ul>
+          <p><strong>Datos de publicidad:</strong> los datos que recopila el SDK de anuncios de Google (como el ID de publicidad) los trata Google, no TotoLab. Puede restablecer o eliminar su ID de publicidad en los ajustes de Android (<em>Privacidad &gt; Anuncios</em> o <em>Google &gt; Anuncios</em>) y gestionar su información en <a href="https://myactivity.google.com/" rel="noopener" target="_blank">Mi actividad de Google</a>. Más detalles en la <a href="privacy-policy.html#publicidad">política de privacidad</a>.</p>
         </section>
 
         <section id="importante">
