@@ -236,7 +236,7 @@
         <p class="eyebrow">Documento legal</p>
         <h1>Política de Privacidad de AdminPlus</h1>
         <dl class="meta">
-          <div><dt>Entrada en vigor:</dt><dd>4 de octubre de 2026</dd></div>
+          <div><dt>Entrada en vigor:</dt><dd>5 de octubre de 2026</dd></div>
           <div><dt>Versión de la app:</dt><dd>2.0</dd></div>
           <div><dt>Paquete:</dt><dd>com.totolab.myapplottery</dd></div>
           <div><dt>Desarrollador:</dt><dd>TotoLab, Managua, Nicaragua</dd></div>
@@ -252,10 +252,11 @@
           <div>
             <p><strong>En resumen</strong></p>
             <ul>
-              <li>La información de su negocio (clientes, inventario, ventas, cobros, finanzas) se guarda <strong>únicamente en el dispositivo</strong>: TotoLab no la recibe y la app funciona sin conexión.</li>
+              <li>La información de su negocio (clientes, inventario, ventas, cobros y préstamos, finanzas) se guarda <strong>únicamente en el dispositivo</strong>: TotoLab no la recibe y la app funciona sin conexión.</li>
               <li>AdminPlus es gratuita y <strong>muestra anuncios de Google AdMob</strong>. El SDK de anuncios de Google recopila ciertos datos del dispositivo, como el ID de publicidad, para mostrar y medir anuncios (ver <a href="#publicidad">sección 7</a>). Esos datos no incluyen la información de su negocio.</li>
               <li>No hay cuentas de usuario ni analíticas propias de TotoLab.</li>
-              <li>La información solo sale del dispositivo cuando el usuario decide compartir una factura o recibo, enviar un recordatorio de cobro o exportar un respaldo.</li>
+              <li>La ubicación de un cliente solo se guarda si usted toca «Usar mi ubicación actual»: se queda en el teléfono y la app no rastrea ni usa la ubicación en segundo plano.</li>
+              <li>La información solo sale del dispositivo cuando el usuario decide compartir una factura, un recibo o un estado de cuenta, enviar un recordatorio de cobro, abrir una dirección en el mapa o exportar un respaldo.</li>
               <li>El usuario puede borrar sus datos en cualquier momento desde la app o desde Android.</li>
             </ul>
           </div>
@@ -288,7 +289,7 @@
 
         <section id="alcance">
           <h2><span class="num">2.</span> Alcance</h2>
-          <p>AdminPlus es una herramienta de gestión para pequeños negocios: clientes, inventario, facturación y ventas, cobros, finanzas, reportes, escáner de códigos y respaldo. Esta política cubre la versión 2.0 y posteriores mientras no sea reemplazada por una versión más reciente publicada en esta misma dirección.</p>
+          <p>AdminPlus es una herramienta de gestión para pequeños negocios: clientes, inventario, facturación y ventas, cobros y préstamos, finanzas, reportes, escáner de códigos y respaldo. Esta política cubre la versión 2.0 y posteriores mientras no sea reemplazada por una versión más reciente publicada en esta misma dirección.</p>
         </section>
 
         <section id="informacion">
@@ -296,12 +297,12 @@
           <p>Para funcionar, AdminPlus guarda en una base de datos local (SQLite) dentro del almacenamiento privado del dispositivo la información que el usuario registra:</p>
           <ul>
             <li><strong>Datos del negocio:</strong> nombre, teléfono, dirección, tasa de impuesto y demás datos que el usuario configure para sus facturas y recibos.</li>
-            <li><strong>Clientes:</strong> nombre, teléfono, correo electrónico, dirección y notas de las personas que el usuario decide registrar, junto con su historial de compras y saldo pendiente. Todos los campos son opcionales salvo el nombre.</li>
+            <li><strong>Clientes:</strong> nombre, teléfono, correo electrónico, dirección y notas de las personas que el usuario decide registrar, junto con su historial de compras y saldo pendiente. También pueden guardar la zona o barrio y, solo si el usuario lo decide, la ubicación (latitud y longitud) de la casa o negocio del cliente. Todos los campos son opcionales salvo el nombre.</li>
             <li><strong>Inventario:</strong> productos, categorías, SKU, códigos de barras, costos, precios, existencias y movimientos de entrada, salida y ajuste. Si el usuario lo desea, una foto de cada producto.</li>
             <li><strong>Ventas y facturación:</strong> facturas, recibos, productos vendidos, descuentos, impuestos, importes, fechas y método de pago (efectivo, tarjeta, transferencia o crédito). AdminPlus solo registra el método de pago: no procesa pagos ni guarda números de tarjeta.</li>
-            <li><strong>Cobros:</strong> cuentas por cobrar, abonos y fechas de vencimiento.</li>
+            <li><strong>Cobros y préstamos:</strong> cuentas por cobrar, los préstamos que el usuario otorga con su propio dinero (capital, interés, cuotas y fechas de vencimiento), abonos y recibos, mora, recordatorios enviados y notas de visita de cobro. AdminPlus no presta dinero: solo registra lo que el usuario ingresa.</li>
             <li><strong>Finanzas:</strong> ingresos, gastos y sus categorías, y registros de apertura y cierre de caja.</li>
-            <li><strong>Preferencias:</strong> el tema visual elegido y la impresora Bluetooth seleccionada.</li>
+            <li><strong>Preferencias:</strong> el tema visual elegido, la impresora Bluetooth seleccionada y las preferencias de notificaciones de cobro.</li>
           </ul>
           <p>TotoLab <strong>no tiene acceso</strong> a esta información: no se transmite, no se sincroniza y no se almacena en servidores externos.</p>
         </section>
@@ -312,7 +313,7 @@
           <ul>
             <li>Datos de cuenta, contraseñas o identificadores de usuario (la app no tiene inicio de sesión).</li>
             <li>La información de su negocio: clientes, productos, ventas, cobros, gastos ni respaldos.</li>
-            <li>La ubicación precisa del dispositivo.</li>
+            <li>La ubicación del dispositivo, ni de forma continua ni en segundo plano. La única ubicación que la app puede guardar es la de un cliente, cuando el usuario toca «Usar mi ubicación actual»; se guarda localmente en el teléfono y no se envía a TotoLab ni a terceros.</li>
             <li>Contactos, mensajes, historial de llamadas ni archivos personales.</li>
           </ul>
           <p>El único componente de terceros que recopila datos es el SDK de anuncios de Google (AdMob), descrito en la <a href="#publicidad">sección 7</a>.</p>
@@ -320,7 +321,7 @@
 
         <section id="permisos">
           <h2><span class="num">5.</span> Permisos del dispositivo</h2>
-          <p>AdminPlus solicita los siguientes permisos, cada uno para una función concreta. Los permisos de cámara y Bluetooth se piden solo cuando el usuario usa la función que los necesita, y pueden revocarse en cualquier momento desde los ajustes de Android.</p>
+          <p>AdminPlus solicita los siguientes permisos, cada uno para una función concreta. Los permisos de cámara, Bluetooth, ubicación y notificaciones se piden solo cuando el usuario usa la función que los necesita, y pueden revocarse en cualquier momento desde los ajustes de Android.</p>
           <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de permisos">
             <table>
               <thead>
@@ -338,9 +339,14 @@
                 <td>No se usa para rastrear ni identificar otros dispositivos.</td>
               </tr>
               <tr>
-                <td>Ubicación (solo Android 11 o anterior)</td>
-                <td>Android exige este permiso en esas versiones para poder buscar dispositivos Bluetooth cercanos.</td>
-                <td>AdminPlus no lee, no guarda y no envía la ubicación del dispositivo. En Android 12 o posterior no se solicita.</td>
+                <td>Ubicación (aproximada o precisa)</td>
+                <td>Guardar la ubicación de un cliente cuando usted toca «Usar mi ubicación actual» (y, en Android 11 o anterior, buscar la impresora Bluetooth). La ubicación se guarda solo en el teléfono.</td>
+                <td>La app no rastrea la ubicación ni la usa en segundo plano, no la envía a TotoLab ni a terceros y solo la lee cuando usted toca el botón. El permiso se pide en ese momento.</td>
+              </tr>
+              <tr>
+                <td>Notificaciones (POST_NOTIFICATIONS)</td>
+                <td>Mostrarle recordatorios de cobro: un resumen diario y avisos de cuotas que vencen, programados en el propio teléfono. Android 13 o posterior pide este permiso, y la app lo solicita solo cuando usted activa las notificaciones.</td>
+                <td>Son notificaciones locales para el usuario: no usan servidores ni notificaciones push remotas, no se envían a sus clientes y puede desactivarlas desde la app o desde los ajustes de Android.</td>
               </tr>
               <tr>
                 <td>Acceso a internet y estado de la red</td>
@@ -368,7 +374,9 @@
           <p>TotoLab <strong>no vende, no alquila y no comparte</strong> la información de su negocio con terceros. Esa información solo sale del dispositivo cuando el usuario lo decide, en estos casos (los datos que recopila el SDK de anuncios se explican en la sección siguiente):</p>
           <ul>
             <li><strong>Compartir una factura o recibo:</strong> la app genera un PDF o una imagen y abre el menú de compartir de Android.</li>
-            <li><strong>Enviar un recordatorio de cobro:</strong> la app prepara el mensaje y lo abre en WhatsApp o en otra aplicación elegida por el usuario, quien revisa y envía el mensaje manualmente. AdminPlus no envía mensajes de forma automática.</li>
+            <li><strong>Enviar un recordatorio de cobro:</strong> la app prepara el mensaje y lo abre en WhatsApp o en otra aplicación elegida por el usuario, quien revisa y envía el mensaje manualmente. AdminPlus no envía mensajes de forma automática ni contacta a sus clientes.</li>
+            <li><strong>Abrir una dirección o una ruta en el mapa:</strong> la app abre Google Maps u otra aplicación de mapas del usuario con la dirección o las coordenadas del cliente (o con las paradas de la ruta del día). Esa aplicación recibe esos datos y los trata según sus propias políticas. AdminPlus no incluye ningún SDK de mapas.</li>
+            <li><strong>Compartir un estado de cuenta:</strong> igual que una factura, la app genera un PDF y abre el menú de compartir de Android.</li>
             <li><strong>Exportar un respaldo:</strong> la app crea un archivo con la información del negocio y el usuario elige dónde guardarlo (por ejemplo, en el almacenamiento del teléfono o en un servicio de su preferencia).</li>
             <li><strong>Imprimir:</strong> los datos de la factura o recibo se envían por Bluetooth a la impresora térmica que el usuario conectó.</li>
           </ul>
@@ -395,7 +403,7 @@
 
         <section id="terceros">
           <h2><span class="num">8.</span> Datos de terceros</h2>
-          <p>Al registrar datos de clientes, el usuario de AdminPlus actúa como responsable de esa información. Le corresponde informar a sus clientes, contar con su consentimiento cuando la ley lo exija y usar sus datos conforme a la legislación aplicable, incluida la Ley n.º 787 de Protección de Datos Personales de Nicaragua.</p>
+          <p>Al registrar datos de clientes, el usuario de AdminPlus actúa como responsable de esa información. Le corresponde informar a sus clientes, contar con su consentimiento cuando la ley lo exija y usar sus datos conforme a la legislación aplicable, incluida la Ley n.º 787 de Protección de Datos Personales de Nicaragua. Esto incluye la dirección y la ubicación de sus clientes que guarde en la app.</p>
         </section>
 
         <section id="conservacion">

@@ -325,7 +325,7 @@ MODULES = [
     ("users", "Clientes", "Ficha de cada cliente con teléfono, correo, dirección y notas. Historial de compras y saldo pendiente a la vista."),
     ("package", "Inventario", "Productos y categorías con SKU, código de barras, costo, precio y stock. Entradas, salidas, ajustes y alertas de stock bajo."),
     ("receipt", "Facturación y ventas", "Facturas y recibos con descuentos, IVA configurable y pagos en efectivo, tarjeta, transferencia o crédito. Impresión térmica Bluetooth y PDF."),
-    ("clock", "Cobros", "Cuentas por cobrar de ventas a crédito, abonos y fechas de vencimiento. Recordatorios que usted envía por WhatsApp u otra app."),
+    ("clock", "Cobros y préstamos", "Control de los préstamos que usted otorga con su propio dinero y de las ventas a crédito: cuotas diarias, semanales, quincenales o mensuales, abonos, mora, agenda del día y mapas. Recordatorios que usted envía por WhatsApp u otra app. AdminPlus no presta dinero."),
     ("wallet", "Finanzas", "Ingresos, gastos por categoría y caja diaria con apertura y cierre. Utilidad real del negocio, sin hojas de cálculo."),
     ("chart", "Reportes", "Ventas por período, productos más vendidos, márgenes y gastos para decidir qué comprar y qué precio poner."),
     ("scan", "Escáner", "Lea códigos de barras y QR con la cámara para buscar un producto, venderlo o contar inventario más rápido."),
@@ -340,8 +340,10 @@ LANDING_MODULES = [
      ["Entradas, salidas y ajustes", "Alertas de stock bajo", "Escanee con la cámara para buscar, vender o contar"]),
     ("receipt", "Facturación", "Facturas y recibos en segundos, listos para imprimir o compartir.",
      ["Descuentos e IVA configurable", "Efectivo, tarjeta, transferencia o crédito", "Impresora térmica Bluetooth y PDF"]),
-    ("clock", "Cobros", "Ventas a crédito bajo control, sin cuaderno de fiados.",
-     ["Abonos y fechas de vencimiento", "Lista de quién le debe y cuánto", "Recordatorios por WhatsApp que usted envía"]),
+    ("clock", "Cobros y préstamos", "Controle sus préstamos y cobros, sin cuaderno de fiados.",
+     ["Préstamos y ventas a crédito con cuotas semanales, quincenales o mensuales",
+      "Agenda del día, recordatorios por WhatsApp que usted envía y mapas para llegar al cliente",
+      "Abonos, mora, recibos y estado de cuenta"]),
     ("wallet", "Finanzas", "Lo que entra y lo que sale, en el mismo lugar que sus ventas.",
      ["Gastos por categoría", "Apertura y cierre de caja diaria", "Utilidad real del negocio"]),
     ("chart", "Reportes", "Números claros para decidir qué comprar y a qué precio vender.",
@@ -366,6 +368,8 @@ FAQ = [
      "Los anuncios permiten que AdminPlus sea gratis. Son breves y discretos: un banner en pantallas de consulta y, muy de vez en cuando, un anuncio corto en una pausa natural, como al cerrar la caja. Nunca aparecen mientras vende, cobra o llena un formulario. Los anuncios los sirve Google AdMob y no tienen acceso a la información de su negocio."),
     ("¿Dónde se guardan mis datos?",
      "En una base de datos local dentro de su teléfono. TotoLab no tiene acceso a ellos y no hay copias en servidores. Para protegerlos, exporte respaldos con frecuencia y guárdelos en un lugar seguro."),
+    ("¿AdminPlus presta dinero?",
+     "No. AdminPlus no presta dinero, no ofrece ni gestiona préstamos y no conecta a nadie con prestamistas. Es una herramienta de registro y control para negocios y personas que prestan con su propio dinero o venden a crédito: lleva las cuotas, los abonos y los recordatorios de cobro. Quien presta es responsable de cumplir la ley aplicable a sus préstamos."),
     ("¿Tengo que crear una cuenta?",
      "No. AdminPlus no tiene inicio de sesión. Si en el futuro se agrega una cuenta o un respaldo en la nube, será opcional y la política de privacidad se actualizará antes."),
     ("¿Qué impresora puedo usar?",
@@ -578,7 +582,7 @@ INDEX_BODY = f"""    <section class="hero" aria-labelledby="hero-title">
         <div>
           <p class="badge">Versión <b>2.0</b> · Android</p>
           <h1 id="hero-title">Su negocio en orden, <em>desde el teléfono</em>.</h1>
-          <p class="lead">Clientes, inventario, ventas, cobros y finanzas en una sola app para pulperías, tiendas, ferreterías, cafeterías y emprendimientos de Nicaragua y Centroamérica. Funciona sin internet y sus datos se quedan en su teléfono.</p>
+          <p class="lead">Clientes, inventario, ventas, cobros y préstamos, y finanzas en una sola app para pulperías, tiendas, ferreterías, cafeterías y emprendimientos de Nicaragua y Centroamérica. Funciona sin internet y sus datos se quedan en su teléfono.</p>
           <div class="actions">
             {play_btn()}
             <a class="btn btn-secondary" href="#modulos">Ver qué incluye {I("arrow-right", 18)}</a>
@@ -816,8 +820,10 @@ PERMS = [
      "Las imágenes del escáner se procesan en el momento y no se guardan ni se envían. Las fotos de productos se guardan solo en el almacenamiento privado de la app."),
     ("Bluetooth (buscar y conectar dispositivos)", "Encontrar y conectarse a la impresora térmica para imprimir facturas y recibos.",
      "No se usa para rastrear ni identificar otros dispositivos."),
-    ("Ubicación (solo Android 11 o anterior)", "Android exige este permiso en esas versiones para poder buscar dispositivos Bluetooth cercanos.",
-     "AdminPlus no lee, no guarda y no envía la ubicación del dispositivo. En Android 12 o posterior no se solicita."),
+    ("Ubicación (aproximada o precisa)", "Guardar la ubicación de un cliente cuando usted toca «Usar mi ubicación actual» (y, en Android 11 o anterior, buscar la impresora Bluetooth). La ubicación se guarda solo en el teléfono.",
+     "La app no rastrea la ubicación ni la usa en segundo plano, no la envía a TotoLab ni a terceros y solo la lee cuando usted toca el botón. El permiso se pide en ese momento."),
+    ("Notificaciones (POST_NOTIFICATIONS)", "Mostrarle recordatorios de cobro: un resumen diario y avisos de cuotas que vencen, programados en el propio teléfono. Android 13 o posterior pide este permiso, y la app lo solicita solo cuando usted activa las notificaciones.",
+     "Son notificaciones locales para el usuario: no usan servidores ni notificaciones push remotas, no se envían a sus clientes y puede desactivarlas desde la app o desde los ajustes de Android."),
     ("Acceso a internet y estado de la red", "Mostrar anuncios y abrir enlaces externos, como esta política o el correo de soporte.",
      "La app no envía la información de su negocio a través de internet."),
     ("ID de publicidad (AD_ID)", "Permite al SDK de Google AdMob mostrar y medir anuncios, y personalizarlos si usted lo consiente.",
@@ -836,7 +842,7 @@ PRIV_BODY = f"""    <div class="doc-head">
         <p class="eyebrow">Documento legal</p>
         <h1>Política de Privacidad de AdminPlus</h1>
         <dl class="meta">
-          <div><dt>Entrada en vigor:</dt><dd>4 de octubre de 2026</dd></div>
+          <div><dt>Entrada en vigor:</dt><dd>5 de octubre de 2026</dd></div>
           <div><dt>Versión de la app:</dt><dd>2.0</dd></div>
           <div><dt>Paquete:</dt><dd>com.totolab.myapplottery</dd></div>
           <div><dt>Desarrollador:</dt><dd>TotoLab, Managua, Nicaragua</dd></div>
@@ -852,10 +858,11 @@ PRIV_BODY = f"""    <div class="doc-head">
           <div>
             <p><strong>En resumen</strong></p>
             <ul>
-              <li>La información de su negocio (clientes, inventario, ventas, cobros, finanzas) se guarda <strong>únicamente en el dispositivo</strong>: TotoLab no la recibe y la app funciona sin conexión.</li>
+              <li>La información de su negocio (clientes, inventario, ventas, cobros y préstamos, finanzas) se guarda <strong>únicamente en el dispositivo</strong>: TotoLab no la recibe y la app funciona sin conexión.</li>
               <li>AdminPlus es gratuita y <strong>muestra anuncios de Google AdMob</strong>. El SDK de anuncios de Google recopila ciertos datos del dispositivo, como el ID de publicidad, para mostrar y medir anuncios (ver <a href="#publicidad">sección 7</a>). Esos datos no incluyen la información de su negocio.</li>
               <li>No hay cuentas de usuario ni analíticas propias de TotoLab.</li>
-              <li>La información solo sale del dispositivo cuando el usuario decide compartir una factura o recibo, enviar un recordatorio de cobro o exportar un respaldo.</li>
+              <li>La ubicación de un cliente solo se guarda si usted toca «Usar mi ubicación actual»: se queda en el teléfono y la app no rastrea ni usa la ubicación en segundo plano.</li>
+              <li>La información solo sale del dispositivo cuando el usuario decide compartir una factura, un recibo o un estado de cuenta, enviar un recordatorio de cobro, abrir una dirección en el mapa o exportar un respaldo.</li>
               <li>El usuario puede borrar sus datos en cualquier momento desde la app o desde Android.</li>
             </ul>
           </div>
@@ -870,7 +877,7 @@ PRIV_BODY = f"""    <div class="doc-head">
 
         <section id="alcance">
           {P("alcance")}
-          <p>AdminPlus es una herramienta de gestión para pequeños negocios: clientes, inventario, facturación y ventas, cobros, finanzas, reportes, escáner de códigos y respaldo. Esta política cubre la versión 2.0 y posteriores mientras no sea reemplazada por una versión más reciente publicada en esta misma dirección.</p>
+          <p>AdminPlus es una herramienta de gestión para pequeños negocios: clientes, inventario, facturación y ventas, cobros y préstamos, finanzas, reportes, escáner de códigos y respaldo. Esta política cubre la versión 2.0 y posteriores mientras no sea reemplazada por una versión más reciente publicada en esta misma dirección.</p>
         </section>
 
         <section id="informacion">
@@ -878,12 +885,12 @@ PRIV_BODY = f"""    <div class="doc-head">
           <p>Para funcionar, AdminPlus guarda en una base de datos local (SQLite) dentro del almacenamiento privado del dispositivo la información que el usuario registra:</p>
           <ul>
             <li><strong>Datos del negocio:</strong> nombre, teléfono, dirección, tasa de impuesto y demás datos que el usuario configure para sus facturas y recibos.</li>
-            <li><strong>Clientes:</strong> nombre, teléfono, correo electrónico, dirección y notas de las personas que el usuario decide registrar, junto con su historial de compras y saldo pendiente. Todos los campos son opcionales salvo el nombre.</li>
+            <li><strong>Clientes:</strong> nombre, teléfono, correo electrónico, dirección y notas de las personas que el usuario decide registrar, junto con su historial de compras y saldo pendiente. También pueden guardar la zona o barrio y, solo si el usuario lo decide, la ubicación (latitud y longitud) de la casa o negocio del cliente. Todos los campos son opcionales salvo el nombre.</li>
             <li><strong>Inventario:</strong> productos, categorías, SKU, códigos de barras, costos, precios, existencias y movimientos de entrada, salida y ajuste. Si el usuario lo desea, una foto de cada producto.</li>
             <li><strong>Ventas y facturación:</strong> facturas, recibos, productos vendidos, descuentos, impuestos, importes, fechas y método de pago (efectivo, tarjeta, transferencia o crédito). AdminPlus solo registra el método de pago: no procesa pagos ni guarda números de tarjeta.</li>
-            <li><strong>Cobros:</strong> cuentas por cobrar, abonos y fechas de vencimiento.</li>
+            <li><strong>Cobros y préstamos:</strong> cuentas por cobrar, los préstamos que el usuario otorga con su propio dinero (capital, interés, cuotas y fechas de vencimiento), abonos y recibos, mora, recordatorios enviados y notas de visita de cobro. AdminPlus no presta dinero: solo registra lo que el usuario ingresa.</li>
             <li><strong>Finanzas:</strong> ingresos, gastos y sus categorías, y registros de apertura y cierre de caja.</li>
-            <li><strong>Preferencias:</strong> el tema visual elegido y la impresora Bluetooth seleccionada.</li>
+            <li><strong>Preferencias:</strong> el tema visual elegido, la impresora Bluetooth seleccionada y las preferencias de notificaciones de cobro.</li>
           </ul>
           <p>TotoLab <strong>no tiene acceso</strong> a esta información: no se transmite, no se sincroniza y no se almacena en servidores externos.</p>
         </section>
@@ -894,7 +901,7 @@ PRIV_BODY = f"""    <div class="doc-head">
           <ul>
             <li>Datos de cuenta, contraseñas o identificadores de usuario (la app no tiene inicio de sesión).</li>
             <li>La información de su negocio: clientes, productos, ventas, cobros, gastos ni respaldos.</li>
-            <li>La ubicación precisa del dispositivo.</li>
+            <li>La ubicación del dispositivo, ni de forma continua ni en segundo plano. La única ubicación que la app puede guardar es la de un cliente, cuando el usuario toca «Usar mi ubicación actual»; se guarda localmente en el teléfono y no se envía a TotoLab ni a terceros.</li>
             <li>Contactos, mensajes, historial de llamadas ni archivos personales.</li>
           </ul>
           <p>El único componente de terceros que recopila datos es el SDK de anuncios de Google (AdMob), descrito en la <a href="#publicidad">sección 7</a>.</p>
@@ -902,7 +909,7 @@ PRIV_BODY = f"""    <div class="doc-head">
 
         <section id="permisos">
           {P("permisos")}
-          <p>AdminPlus solicita los siguientes permisos, cada uno para una función concreta. Los permisos de cámara y Bluetooth se piden solo cuando el usuario usa la función que los necesita, y pueden revocarse en cualquier momento desde los ajustes de Android.</p>
+          <p>AdminPlus solicita los siguientes permisos, cada uno para una función concreta. Los permisos de cámara, Bluetooth, ubicación y notificaciones se piden solo cuando el usuario usa la función que los necesita, y pueden revocarse en cualquier momento desde los ajustes de Android.</p>
           <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de permisos">
             <table>
               <thead>
@@ -921,7 +928,9 @@ PRIV_BODY = f"""    <div class="doc-head">
           <p>TotoLab <strong>no vende, no alquila y no comparte</strong> la información de su negocio con terceros. Esa información solo sale del dispositivo cuando el usuario lo decide, en estos casos (los datos que recopila el SDK de anuncios se explican en la sección siguiente):</p>
           <ul>
             <li><strong>Compartir una factura o recibo:</strong> la app genera un PDF o una imagen y abre el menú de compartir de Android.</li>
-            <li><strong>Enviar un recordatorio de cobro:</strong> la app prepara el mensaje y lo abre en WhatsApp o en otra aplicación elegida por el usuario, quien revisa y envía el mensaje manualmente. AdminPlus no envía mensajes de forma automática.</li>
+            <li><strong>Enviar un recordatorio de cobro:</strong> la app prepara el mensaje y lo abre en WhatsApp o en otra aplicación elegida por el usuario, quien revisa y envía el mensaje manualmente. AdminPlus no envía mensajes de forma automática ni contacta a sus clientes.</li>
+            <li><strong>Abrir una dirección o una ruta en el mapa:</strong> la app abre Google Maps u otra aplicación de mapas del usuario con la dirección o las coordenadas del cliente (o con las paradas de la ruta del día). Esa aplicación recibe esos datos y los trata según sus propias políticas. AdminPlus no incluye ningún SDK de mapas.</li>
+            <li><strong>Compartir un estado de cuenta:</strong> igual que una factura, la app genera un PDF y abre el menú de compartir de Android.</li>
             <li><strong>Exportar un respaldo:</strong> la app crea un archivo con la información del negocio y el usuario elige dónde guardarlo (por ejemplo, en el almacenamiento del teléfono o en un servicio de su preferencia).</li>
             <li><strong>Imprimir:</strong> los datos de la factura o recibo se envían por Bluetooth a la impresora térmica que el usuario conectó.</li>
           </ul>
@@ -948,7 +957,7 @@ PRIV_BODY = f"""    <div class="doc-head">
 
         <section id="terceros">
           {P("terceros")}
-          <p>Al registrar datos de clientes, el usuario de AdminPlus actúa como responsable de esa información. Le corresponde informar a sus clientes, contar con su consentimiento cuando la ley lo exija y usar sus datos conforme a la legislación aplicable, incluida la Ley n.º 787 de Protección de Datos Personales de Nicaragua.</p>
+          <p>Al registrar datos de clientes, el usuario de AdminPlus actúa como responsable de esa información. Le corresponde informar a sus clientes, contar con su consentimiento cuando la ley lo exija y usar sus datos conforme a la legislación aplicable, incluida la Ley n.º 787 de Protección de Datos Personales de Nicaragua. Esto incluye la dirección y la ubicación de sus clientes que guarde en la app.</p>
         </section>
 
         <section id="conservacion">
@@ -1015,6 +1024,7 @@ TERMS_SECTIONS = [
     ("datos", "Datos del usuario y respaldos"),
     ("fiscal", "Facturas y obligaciones fiscales"),
     ("clientes", "Datos de clientes"),
+    ("prestamos", "Préstamos, créditos y cobros"),
     ("terceros", "Servicios y dispositivos de terceros"),
     ("propiedad", "Propiedad intelectual"),
     ("garantia", "Sin garantía"),
@@ -1042,7 +1052,7 @@ TERMS_BODY = f"""    <div class="doc-head">
         <p class="eyebrow">Producto y condiciones</p>
         <h1>AdminPlus: descripción y Términos y Condiciones</h1>
         <dl class="meta">
-          <div><dt>Última actualización:</dt><dd>4 de octubre de 2026</dd></div>
+          <div><dt>Última actualización:</dt><dd>5 de octubre de 2026</dd></div>
           <div><dt>Versión de la app:</dt><dd>2.0</dd></div>
           <div><dt>Desarrollador:</dt><dd>TotoLab, Managua, Nicaragua</dd></div>
         </dl>
@@ -1059,7 +1069,7 @@ TERMS_BODY = f"""    <div class="doc-head">
         <div class="callout" role="note">
           {I("info", 22)}
           <div>
-            <p><strong>Importante.</strong> AdminPlus es una herramienta de <strong>gestión administrativa</strong> que guarda la información solo en el dispositivo. No procesa pagos en línea, no cobra a sus clientes en su nombre y no envía información a TotoLab. Los detalles están en la <a href="privacy-policy.html">Política de Privacidad</a>.</p>
+            <p><strong>Importante.</strong> AdminPlus es una herramienta de <strong>gestión administrativa</strong> que guarda la información solo en el dispositivo. No procesa pagos en línea, no presta dinero, no cobra a sus clientes en su nombre y no envía información a TotoLab. Los detalles están en la <a href="privacy-policy.html">Política de Privacidad</a>.</p>
           </div>
         </div>
 
@@ -1115,9 +1125,30 @@ TERMS_BODY = f"""    <div class="doc-head">
           <p>Al registrar datos de sus clientes, el usuario actúa como responsable de esa información. Le corresponde contar con su consentimiento cuando la ley lo exija, usar los datos solo para fines legítimos de su negocio y enviar recordatorios de cobro de forma respetuosa y conforme a la ley.</p>
         </section>
 
+        <section id="prestamos">
+          {T("prestamos")}
+          <p>AdminPlus es una herramienta de <strong>registro y control</strong> para quien presta dinero con sus propios recursos o vende a crédito. <strong>AdminPlus no ofrece, no otorga, no facilita ni intermedia préstamos ni créditos</strong>, no conecta a nadie con prestamistas y no actúa como prestamista, cobrador ni agente de cobranza. TotoLab no es parte de la relación entre el usuario y sus clientes.</p>
+          <div class="callout warn" role="note">
+            {I("alert", 22)}
+            <div>
+              <p>El usuario presta <strong>con su propio dinero y bajo su exclusiva responsabilidad</strong>, y es el único responsable de cumplir la ley aplicable a sus préstamos y cobros. AdminPlus no valida la legalidad de las tasas, comisiones, mora ni plazos que el usuario registra.</p>
+            </div>
+          </div>
+          <p>Al usar los módulos de cobros y préstamos, el usuario reconoce que le corresponde, entre otras obligaciones:</p>
+          <ul>
+            <li><strong>Respetar las tasas de interés y cargos máximos</strong> permitidos por la ley de su país.</li>
+            <li><strong>Cumplir los registros y autorizaciones</strong> que exija la autoridad competente para prestar dinero (por ejemplo, la inscripción ante la CONAMI en Nicaragua, cuando corresponda).</li>
+            <li><strong>Proteger los datos de sus clientes</strong> (nombre, teléfono, dirección, ubicación y saldos), informarles y contar con su consentimiento cuando la ley lo exija, conforme a la legislación de protección de datos personales aplicable.</li>
+            <li><strong>Ejercer prácticas de cobro lícitas y respetuosas</strong>: sin acoso, amenazas, engaños ni divulgación de la deuda a terceros.</li>
+            <li>Revisar los cálculos de cuotas, intereses y mora antes de acordarlos con el cliente: la app los calcula como ayuda, pero la decisión y el acuerdo son del usuario.</li>
+          </ul>
+          <p><strong>Recordatorios y contacto con deudores.</strong> Los recordatorios de cobro los envía el usuario de forma manual: la app prepara el mensaje y el usuario lo revisa y lo envía desde WhatsApp, mensajes de texto u otra aplicación. AdminPlus <strong>no envía mensajes automáticos, no llama ni contacta a los deudores ni a terceros</strong> (como referencias o familiares). Las notificaciones de la app son avisos locales para el propio usuario.</p>
+          <p>TotoLab no responde por los préstamos que el usuario otorgue, por impagos, disputas con sus clientes, sanciones de autoridades ni por el incumplimiento de la ley por parte del usuario.</p>
+        </section>
+
         <section id="terceros">
           {T("terceros")}
-          <p>AdminPlus muestra anuncios de terceros servidos por Google AdMob; TotoLab no controla el contenido de cada anuncio ni los productos anunciados, y la interacción con un anuncio queda sujeta a las condiciones del anunciante y de Google. AdminPlus también puede interactuar con aplicaciones y dispositivos de terceros elegidos por el usuario, como WhatsApp, el menú de compartir de Android, servicios de almacenamiento o impresoras térmicas. TotoLab no controla esos productos y no responde por su funcionamiento, disponibilidad ni por el tratamiento que hagan de la información compartida a través de ellos.</p>
+          <p>AdminPlus muestra anuncios de terceros servidos por Google AdMob; TotoLab no controla el contenido de cada anuncio ni los productos anunciados, y la interacción con un anuncio queda sujeta a las condiciones del anunciante y de Google. AdminPlus también puede interactuar con aplicaciones y dispositivos de terceros elegidos por el usuario, como WhatsApp, aplicaciones de mapas, el menú de compartir de Android, servicios de almacenamiento o impresoras térmicas. TotoLab no controla esos productos y no responde por su funcionamiento, disponibilidad ni por el tratamiento que hagan de la información compartida a través de ellos.</p>
         </section>
 
         <section id="propiedad">
@@ -1170,7 +1201,7 @@ DEL_BODY = f"""    <div class="doc-head">
         <p class="eyebrow">Sus datos</p>
         <h1>Cómo eliminar sus datos de AdminPlus</h1>
         <dl class="meta">
-          <div><dt>Última actualización:</dt><dd>4 de octubre de 2026</dd></div>
+          <div><dt>Última actualización:</dt><dd>5 de octubre de 2026</dd></div>
           <div><dt>Aplicación:</dt><dd>AdminPlus (com.totolab.myapplottery)</dd></div>
           <div><dt>Desarrollador:</dt><dd>TotoLab</dd></div>
         </dl>
@@ -1187,7 +1218,7 @@ DEL_BODY = f"""    <div class="doc-head">
 
         <section id="registros">
           <h2><span class="num">1.</span> Borrar registros individuales</h2>
-          <p>Para eliminar solo algunos datos, ábralos dentro de AdminPlus y use la opción <em>Eliminar</em>. Aplica a clientes, productos, categorías, ventas, cobros, gastos y demás registros. La eliminación es inmediata y permanente.</p>
+          <p>Para eliminar solo algunos datos, ábralos dentro de AdminPlus y use la opción <em>Eliminar</em>. Aplica a clientes (con su zona y ubicación), productos, categorías, ventas, cobros, préstamos, abonos, gastos y demás registros. La eliminación es inmediata y permanente.</p>
         </section>
 
         <section id="restablecer">
@@ -1195,7 +1226,7 @@ DEL_BODY = f"""    <div class="doc-head">
           <ol class="steps">
             <li><strong>Abra AdminPlus.</strong> Vaya a <em>Ajustes</em>.</li>
             <li><strong>Toque <em>Restablecer datos</em>.</strong> La app le pedirá confirmar la acción.</li>
-            <li><strong>Confirme.</strong> Se borran clientes, inventario, fotos de productos, ventas, cobros, finanzas y configuración del negocio.</li>
+            <li><strong>Confirme.</strong> Se borran clientes (con su zona y ubicación), inventario, fotos de productos, ventas, cobros, préstamos, cuotas, abonos, notas de visita, finanzas y configuración del negocio, y se cancelan las notificaciones de cobro programadas.</li>
           </ol>
         </section>
 
@@ -1206,7 +1237,7 @@ DEL_BODY = f"""    <div class="doc-head">
             <li><strong>Toque <em>Almacenamiento</em></strong> (el nombre puede variar según el fabricante).</li>
             <li><strong>Toque <em>Borrar datos</em></strong> y confirme. La app quedará como recién instalada.</li>
           </ol>
-          <p>También puede <strong>desinstalar AdminPlus</strong>: Android elimina toda la información guardada por la app.</p>
+          <p>También puede <strong>desinstalar AdminPlus</strong>: Android elimina toda la información guardada por la app. Para retirar los permisos de ubicación o de notificaciones sin borrar nada, entre a <em>Aplicaciones &gt; AdminPlus &gt; Permisos</em>.</p>
         </section>
 
         <section id="fuera">
