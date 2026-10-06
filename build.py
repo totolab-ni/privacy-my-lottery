@@ -817,7 +817,7 @@ P = lambda sid: h2(PRIV_SECTIONS, sid)
 
 PERMS = [
     ("Cámara", "Escanear códigos de barras y QR para buscar, vender y contar productos. Tomar, si usted lo desea, una foto de un producto.",
-     "Las imágenes del escáner se procesan en el momento y no se guardan ni se envían. Las fotos de productos se guardan solo en el almacenamiento privado de la app."),
+     "Las imágenes del escáner se procesan en el teléfono (Google ML Kit) y no se guardan ni se envían; ML Kit puede enviar a Google solo datos técnicos de diagnóstico. Las fotos de productos se guardan solo en el almacenamiento privado de la app."),
     ("Bluetooth (buscar y conectar dispositivos)", "Encontrar y conectarse a la impresora térmica para imprimir facturas y recibos.",
      "No se usa para rastrear ni identificar otros dispositivos."),
     ("Ubicación (aproximada o precisa)", "Guardar la ubicación de un cliente cuando usted toca «Usar mi ubicación actual» (y, en Android 11 o anterior, buscar la impresora Bluetooth). La ubicación se guarda solo en el teléfono.",
@@ -846,7 +846,7 @@ PRIV_BODY = f"""    <div class="doc-head">
         <p class="eyebrow">Documento legal</p>
         <h1>Política de Privacidad de AdminPlus</h1>
         <dl class="meta">
-          <div><dt>Entrada en vigor:</dt><dd>5 de octubre de 2026</dd></div>
+          <div><dt>Entrada en vigor:</dt><dd>6 de octubre de 2026</dd></div>
           <div><dt>Versión de la app:</dt><dd>2.0</dd></div>
           <div><dt>Paquete:</dt><dd>com.totolab.myapplottery</dd></div>
           <div><dt>Desarrollador:</dt><dd>TotoLab, Managua, Nicaragua</dd></div>
@@ -897,7 +897,7 @@ PRIV_BODY = f"""    <div class="doc-head">
             <li><strong>Preferencias:</strong> el tema visual y el idioma elegidos, la impresora Bluetooth seleccionada, las preferencias de notificaciones de cobro y la fecha del último respaldo.</li>
             <li><strong>Archivos de la app:</strong> las fotos de productos y el logo del negocio, en el almacenamiento privado de la aplicación. Antes de restaurar un respaldo, la app guarda también en ese almacenamiento privado una copia de seguridad de lo que había (una sola, que se borra al restablecer los datos).</li>
           </ul>
-          <p>TotoLab <strong>no tiene acceso</strong> a esta información: no se transmite, no se sincroniza y no se almacena en servidores externos.</p>
+          <p>TotoLab <strong>no tiene acceso</strong> a esta información: no se transmite, no se sincroniza y no se almacena en servidores externos. La copia de seguridad automática de Android (Google Drive) está desactivada para AdminPlus; para llevar sus datos a otro teléfono use <strong>Ajustes › Respaldo</strong>.</p>
         </section>
 
         <section id="no-recopila">
@@ -909,7 +909,7 @@ PRIV_BODY = f"""    <div class="doc-head">
             <li>La ubicación del dispositivo, ni de forma continua ni en segundo plano. La única ubicación que la app puede guardar es la de un cliente, cuando el usuario toca «Usar mi ubicación actual»; se guarda localmente en el teléfono y no se envía a TotoLab ni a terceros.</li>
             <li>Contactos, mensajes, historial de llamadas ni archivos personales.</li>
           </ul>
-          <p>El único componente de terceros que recopila datos es el SDK de anuncios de Google (AdMob), descrito en la <a href="#publicidad">sección 7</a>.</p>
+          <p>Los únicos componentes de terceros que pueden recopilar datos son de Google: el SDK de anuncios (AdMob), descrito en la <a href="#publicidad">sección 7</a>, y el lector de códigos de barras <strong>ML Kit</strong>, que analiza la imagen de la cámara dentro del teléfono y puede enviar a Google datos técnicos de uso y rendimiento (diagnóstico e identificadores de la instalación) para mantener y mejorar ese componente. ML Kit nunca envía las imágenes de la cámara ni la información de su negocio.</p>
         </section>
 
         <section id="permisos">
