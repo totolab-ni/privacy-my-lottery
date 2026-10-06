@@ -302,7 +302,8 @@
             <li><strong>Ventas y facturación:</strong> facturas, recibos, productos vendidos, descuentos, impuestos, importes, fechas y método de pago (efectivo, tarjeta, transferencia o crédito). AdminPlus solo registra el método de pago: no procesa pagos ni guarda números de tarjeta.</li>
             <li><strong>Cobros y préstamos:</strong> cuentas por cobrar, los préstamos que el usuario otorga con su propio dinero (capital, interés, cuotas y fechas de vencimiento), abonos y recibos, mora, recordatorios enviados y notas de visita de cobro. AdminPlus no presta dinero: solo registra lo que el usuario ingresa.</li>
             <li><strong>Finanzas:</strong> ingresos, gastos y sus categorías, y registros de apertura y cierre de caja.</li>
-            <li><strong>Preferencias:</strong> el tema visual elegido, la impresora Bluetooth seleccionada y las preferencias de notificaciones de cobro.</li>
+            <li><strong>Preferencias:</strong> el tema visual y el idioma elegidos, la impresora Bluetooth seleccionada, las preferencias de notificaciones de cobro y la fecha del último respaldo.</li>
+            <li><strong>Archivos de la app:</strong> las fotos de productos y el logo del negocio, en el almacenamiento privado de la aplicación. Antes de restaurar un respaldo, la app guarda también en ese almacenamiento privado una copia de seguridad de lo que había (una sola, que se borra al restablecer los datos).</li>
           </ul>
           <p>TotoLab <strong>no tiene acceso</strong> a esta información: no se transmite, no se sincroniza y no se almacena en servidores externos.</p>
         </section>
@@ -359,6 +360,16 @@
                 <td>No da acceso a ningún dato de su negocio. Puede restablecer o eliminar el ID de publicidad desde los ajustes de Android.</td>
               </tr>
               <tr>
+                <td>Servicios de anuncios de Android (ACCESS_ADSERVICES_AD_ID, ACCESS_ADSERVICES_ATTRIBUTION, ACCESS_ADSERVICES_TOPICS)</td>
+                <td>Permisos que declara el SDK de Google AdMob para que los anuncios puedan medirse y, si usted lo consiente, personalizarse con las API de privacidad de anuncios de Android.</td>
+                <td>Son permisos normales, no muestran ningún diálogo y no dan acceso a la información de su negocio. Puede gestionar o desactivar los anuncios personalizados en los ajustes de Android (<em>Google &gt; Anuncios</em>) y en <em>Ajustes &gt; Preferencias de anuncios</em> de AdminPlus.</td>
+              </tr>
+              <tr>
+                <td>Tareas del sistema (WAKE_LOCK, RECEIVE_BOOT_COMPLETED)</td>
+                <td>Permisos normales que declaran los componentes de notificaciones y de anuncios para ejecutar tareas programadas por el sistema (por ejemplo, volver a programar los recordatorios de cobro locales después de reiniciar el teléfono).</td>
+                <td>No muestran ningún diálogo ni dan acceso a datos. La app no ejecuta servicios en primer plano (no se solicita el permiso FOREGROUND_SERVICE).</td>
+              </tr>
+              <tr>
                 <td>Vibración</td>
                 <td>Dar respuesta táctil al pulsar botones o al leer un código.</td>
                 <td>No accede a ningún dato.</td>
@@ -377,10 +388,10 @@
             <li><strong>Enviar un recordatorio de cobro:</strong> la app prepara el mensaje y lo abre en WhatsApp o en otra aplicación elegida por el usuario, quien revisa y envía el mensaje manualmente. AdminPlus no envía mensajes de forma automática ni contacta a sus clientes.</li>
             <li><strong>Abrir una dirección o una ruta en el mapa:</strong> la app abre Google Maps u otra aplicación de mapas del usuario con la dirección o las coordenadas del cliente (o con las paradas de la ruta del día). Esa aplicación recibe esos datos y los trata según sus propias políticas. AdminPlus no incluye ningún SDK de mapas.</li>
             <li><strong>Compartir un estado de cuenta:</strong> igual que una factura, la app genera un PDF y abre el menú de compartir de Android.</li>
-            <li><strong>Exportar un respaldo:</strong> la app crea un archivo con la información del negocio y el usuario elige dónde guardarlo (por ejemplo, en el almacenamiento del teléfono o en un servicio de su preferencia).</li>
+            <li><strong>Exportar un respaldo:</strong> la app crea un archivo (.adminplus) con la base de datos, las fotos de productos y el logo del negocio, y el usuario elige dónde guardarlo o con quién compartirlo (por ejemplo, una carpeta del teléfono o un servicio de su preferencia). <strong>El archivo no está cifrado.</strong></li>
             <li><strong>Imprimir:</strong> los datos de la factura o recibo se envían por Bluetooth a la impresora térmica que el usuario conectó.</li>
           </ul>
-          <p>En todos los casos, el usuario decide con qué aplicación, servicio o persona comparte la información. A partir de ese momento, queda sujeta a las políticas de esa aplicación o servicio. Se recomienda guardar los archivos de respaldo en un lugar seguro, ya que contienen toda la información del negocio, incluidos los datos de clientes.</p>
+          <p>En todos los casos, el usuario decide con qué aplicación, servicio o persona comparte la información. A partir de ese momento, queda sujeta a las políticas de esa aplicación o servicio. Se recomienda guardar los archivos de respaldo en un lugar seguro: <strong>no están cifrados</strong> y contienen toda la información del negocio, incluidos los datos de clientes.</p>
         </section>
 
         <section id="publicidad">
@@ -410,8 +421,8 @@
           <h2><span class="num">9.</span> Conservación y eliminación</h2>
           <p>La información permanece en el dispositivo hasta que el usuario la elimina. Puede borrarse de estas formas:</p>
           <ul>
-            <li>Eliminando registros individuales (clientes, productos, ventas, gastos u otros) desde la propia aplicación.</li>
-            <li>Usando <em>Ajustes &gt; Restablecer datos</em> dentro de AdminPlus, lo que borra toda la información registrada.</li>
+            <li>Eliminando o anulando registros individuales desde la propia aplicación: los clientes, productos y categorías se eliminan (si tienen historial, como facturas o cobros, se archivan); las ventas, abonos, préstamos y deudas, y los ingresos y gastos se anulan y quedan marcados como anulados.</li>
+            <li>Usando <em>Ajustes &gt; Restablecer datos</em> dentro de AdminPlus, lo que borra toda la información registrada, las fotos de productos y el logo, los archivos temporales (PDF e imágenes de recibos), la copia de seguridad previa a una restauración y las preferencias guardadas (el tema y el idioma, si el usuario no pide conservarlos), y cancela las notificaciones de cobro programadas.</li>
             <li>Borrando los datos de la aplicación desde los ajustes de Android.</li>
             <li>Desinstalando la aplicación, lo que elimina toda la información guardada en ella.</li>
           </ul>
@@ -420,7 +431,7 @@
 
         <section id="seguridad">
           <h2><span class="num">10.</span> Seguridad</h2>
-          <p>La información se guarda en el almacenamiento privado de la aplicación, al que Android impide el acceso de otras aplicaciones. Se recomienda proteger el dispositivo con bloqueo de pantalla, ya que cualquier persona con acceso al teléfono desbloqueado puede ver la información registrada, y mantener los archivos de respaldo en un lugar de confianza.</p>
+          <p>La información se guarda en el almacenamiento privado de la aplicación, al que Android impide el acceso de otras aplicaciones. Se recomienda proteger el dispositivo con bloqueo de pantalla, ya que cualquier persona con acceso al teléfono desbloqueado puede ver la información registrada, y mantener los archivos de respaldo en un lugar de confianza: el archivo de respaldo no está cifrado, por lo que cualquiera que lo obtenga puede leer su contenido.</p>
         </section>
 
         <section id="menores">
