@@ -365,7 +365,7 @@ FAQ = [
     ("¿Necesito internet para usar AdminPlus?",
      "No. Puede vender, cobrar, registrar gastos, imprimir y ver reportes sin conexión. Internet se usa para mostrar anuncios, abrir enlaces externos, como esta política, y compartir documentos si usted lo decide. Sin conexión, la app funciona igual y simplemente no muestra anuncios."),
     ("¿Por qué AdminPlus tiene anuncios?",
-     "Los anuncios permiten que AdminPlus sea gratis. Son breves y discretos: un banner en pantallas de consulta y, muy de vez en cuando, un anuncio corto en una pausa natural, como al cerrar la caja. Nunca aparecen mientras vende, cobra o llena un formulario. Los anuncios los sirve Google AdMob y no tienen acceso a la información de su negocio."),
+     "Los anuncios permiten que AdminPlus sea gratis. Son sutiles: un banner discreto en pantallas de consulta, una tarjeta integrada en Reportes y, como mucho una vez al día, un anuncio corto al cerrar la caja. Nunca aparecen mientras vende, cobra o llena un formulario. Además, puede elegir ver un anuncio corto para quitar la línea «Hecho con AdminPlus» de los PDF e imágenes que comparte; compartir siempre es gratis. Los anuncios los sirve Google AdMob y no tienen acceso a la información de su negocio."),
     ("¿Dónde se guardan mis datos?",
      "En una base de datos local dentro de su teléfono. TotoLab no tiene acceso a ellos y no hay copias en servidores. Para protegerlos, exporte respaldos con frecuencia y guárdelos en un lugar seguro: el archivo de respaldo no está cifrado."),
     ("¿AdminPlus presta dinero?",
@@ -944,7 +944,14 @@ PRIV_BODY = f"""    <div class="doc-head">
 
         <section id="publicidad">
           {P("publicidad")}
-          <p>AdminPlus es gratuita y se financia con anuncios servidos por <strong>Google AdMob</strong>. Los anuncios son breves y discretos: un banner en pantallas de consulta y, ocasionalmente, un anuncio corto en pausas naturales. No aparecen mientras se vende, se cobra o se completa un formulario. Sin conexión a internet no se muestran anuncios.</p>
+          <p>AdminPlus es gratuita y se financia con anuncios servidos por <strong>Google AdMob</strong>. Los anuncios son sutiles: no aparecen mientras se vende, se cobra o se completa un formulario, ni durante un respaldo o una restauración. Sin conexión a internet no se muestran anuncios. Los formatos son:</p>
+          <ul>
+            <li><strong>Banner:</strong> una franja discreta, con la etiqueta «Anuncio», al pie de algunas pantallas de consulta (por ejemplo, Inicio, las listas de clientes, inventario y facturas, y Más).</li>
+            <li><strong>Tarjeta de anuncio en Reportes (puede mostrarse):</strong> según la versión de la app y la disponibilidad de anuncios, el índice de Reportes puede mostrar una tarjeta de anuncio integrada, con la etiqueta «Anuncio» y el icono de AdChoices de Google, en lugar del banner.</li>
+            <li><strong>Anuncio a pantalla completa al cerrar la caja:</strong> uno solo, como máximo una vez al día, de imagen y texto, que no aparece en los primeros 7 días de uso y que se puede cerrar.</li>
+            <li><strong>Anuncio recompensado opcional:</strong> al compartir un PDF o una imagen, estos llevan al pie la línea «Hecho con AdminPlus». Compartir es siempre gratuito; si la persona lo desea, puede elegir ver un anuncio corto para quitar esa línea durante 10 minutos. Nunca es obligatorio: si no hay conexión o el anuncio no carga, se comparte igual. El ticket impreso y el CSV no llevan esa línea.</li>
+          </ul>
+          <p>Se bloquean categorías sensibles de anuncios (apuestas, citas, préstamos de alto riesgo y alcohol) en la configuración de AdMob.</p>
           <p>Para mostrar anuncios, el SDK de Google Mobile Ads incluido en la app puede recopilar y enviar a Google, de forma automática:</p>
           <ul>
             <li>El <strong>ID de publicidad</strong> de Android y otros identificadores del dispositivo.</li>
